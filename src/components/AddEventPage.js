@@ -58,11 +58,11 @@ const AddEventPage = () => {
             initialValues={{
               eventName: "",
               organisatorName: "",
-              eventType: "",
-              eventCat: "",
-              subEventCat: "",
-              showVisitors: "",
-              placeType: "",
+              eventType: "fest",
+              eventCat: "music",
+              subEventCat: "alternative",
+              showVisitors: "public",
+              placeType: "standart",
               placeName: "",
               placeAddress: "",
               eventDate: "",
@@ -70,16 +70,16 @@ const AddEventPage = () => {
               eventTime: "",
               img1: "",
               ticketName: "",
-              ticketDuration: "",
+              ticketDuration: "end",
               ticketPrice: "",
               maxTicketAmount: "",
               insta: "",
               twitter: "",
               fb: "",
               youtube: "",
-              eventImage: "",
+              image:url
             }}
-            onSubmit={(values, url, { setSubmitting }) => {
+            onSubmit={(values, { setSubmitting }) => {
               console.log(values);
               setDoc(doc(db, "events", values.eventName), {
                 eventName: values.eventName,
@@ -103,7 +103,7 @@ const AddEventPage = () => {
                 twitter: values.twitter,
                 fb: values.fb,
                 youtube: values.youtube,
-                eventImage: url,
+                image:url,
               });
             }}
           >
@@ -284,7 +284,7 @@ const AddEventPage = () => {
                             htmlFor='image1'
                             className='w-2/3 h-72 flex items-center border  justify-center'
                           >
-                            {url ? <img src={url} alt='' /> : <IoIosAdd />}
+                            {url ? <img className="w-full h-72 border " src={url} alt='' /> : <IoIosAdd />}
                           </label>
                           <input
                             className='invisible w-0'
@@ -293,7 +293,7 @@ const AddEventPage = () => {
                             type='file'
                             accept='/image/*'
                           />
-                          <button onClick={handleUpload}>Resim Ekle</button>
+                          <span onClick={handleUpload} className="cursor-pointer">Resim Ekle</span>
                         </div>
                       </div>
                     </div>
@@ -322,10 +322,10 @@ const AddEventPage = () => {
                                 as='select'
                                 name='ticketDuration'
                               >
-                                <option value='red'>Etkinlik Bitene Kadar</option>
-                                <option value='green'>Etkinlik Başlayana Kadar</option>
-                                <option value='blue'>Başlamaya 30 dk Kalaya Kadar</option>
-                                <option value='blue'>24 saat Kalaya Kadar</option>
+                                <option value='end'>Etkinlik Bitene Kadar</option>
+                                <option value='start'>Etkinlik Başlayana Kadar</option>
+                                <option value='30'>Başlamaya 30 dk Kalaya Kadar</option>
+                                <option value='24'>24 saat Kalaya Kadar</option>
                               </Field>
                             </div>
                           </div>
