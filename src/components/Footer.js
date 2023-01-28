@@ -4,8 +4,7 @@ import { IoLogoInstagram, IoLogoTwitter, IoLogoLinkedin } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <div className='bg-black flex flex-col mt-48 container mx-auto pb-16'>
-      <div className='w-full h-0.5 mb-7 bg-neonBlue'> </div>
+    <div className='bg-black flex flex-col mt-48 pb-16 pt-8 px-8 border-t-2 '>
       <div className='flex flex-col lg:flex-row text-white justify-between mx-4'>
         <img src={logo} className='w-32 mb-6 lg:mb-0' alt='' />
         <div className='flex gap-4 text-sm'>

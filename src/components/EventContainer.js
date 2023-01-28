@@ -23,11 +23,11 @@ const EventContainer = () => {
     superLargeDesktop: {
       // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
-      items: 6,
+      items: 3,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4,
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -49,10 +49,10 @@ const EventContainer = () => {
   }, []);
   return (
     <div className=''>
-      <h3 className='text-white text-3xl font-bold mb-8'>Yaklaşan Etkinlik</h3>
-      {events.map((event) => (
-        <span>{event.placeName}</span>
-      ))}
+      <h3 className='text-white text-3xl font-bold mb-8'>
+        
+        Yaklaşan Etkinlik
+      </h3>
       <Carousel
         infinite={true}
         responsive={responsive}
@@ -73,25 +73,24 @@ const EventContainer = () => {
             onClick={() => {
               navigate(`/Event/${Party}`, { state: { events } });
             }}
-            className=' w-72 h-80 bg-[#354153] pb-3 rounded-md flex flex-col gap-3 mx-4 select-none'
+            className='border-4 border-mor w-80  px-2 pt-2 bg-white pb-3 rounded-md flex  flex-col gap-2 mx-4 select-none'
           >
             <img
               className=' mb-3 rounded-t h-44 pointer-events-none '
               src={event.image}
               alt=''
             />
-            <div className='text-gray-200 text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
-              <IoIosPin />
-              {event.placeName}
+            <span className="self-center font-bold text-2xl text-shadow-2xl" >{event.eventName}</span>
+            <div className='text-black font-semibold text-lg flex gap-1  text-shadow-md md:gap-3 ml-2 items-center justify-start'>
+              <IoIosPin /> {event.placeName}
             </div>
-            <div className='text-gray-200 text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
-              <IoIosCalendar />
-              {event.eventDate} {event.eventTime}
+            <div className='text-black font-semibold text-lg flex gap-1 md:gap-3 ml-2  text-shadow-md items-center justify-start'>
+              <IoIosCalendar /> {event.eventDate} {event.eventTime}
             </div>
             <div className='flex items-center w-full  justify-center px-2'>
-              <button className=' bg-[#08BCD6] hover:border-neonBlue border-solid border-2 border-transparent transition-all   py-2 rounded text-black w-full'>
-                <span className='font-semibold'>dsadsa ₺</span>
-                <span>'den Başlayan Fiyatlarla </span>
+              <button className=' bg-mor hover:border-neonBlue border-solid border-2 border-transparent  shadow-2xl shadow-black  transition-all py-2 rounded text-white w-full'>
+                <span className='font-semibold'> {event.ticketPrice} ₺</span>
+                <span> 'den Başlayan Fiyatlarla </span>
               </button>
             </div>
           </div>

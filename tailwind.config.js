@@ -11,9 +11,12 @@ module.exports = {
                 backgroundColor: "#1B3237",
                 neonBlue: "#45E8FF",
                 turkuaz: "#4D6E75",
+                mor: "#6400FB",
 
             },
         },
     },
-    plugins: [],
+    plugins: [
+        require('tailwindcss-textshadow')
+    ]
 }
