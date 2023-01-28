@@ -41,21 +41,19 @@ const EventContainer = () => {
 
   const handleClick = async () => {
     const querySnapshot = await getDocs(collection(db, "events"));
-    setevents(
-      querySnapshot.docs.map((doc) => ({
-        img: doc.data().imageURL,
-      }))
-    );
+    console.log(querySnapshot);
+    setevents(querySnapshot.docs.map((doc) => doc.data()));
   };
   useEffect(() => {
     handleClick();
   }, []);
   return (
     <div className=''>
-      <h3 className='text-white text-3xl font-bold mb-8'>
-        Yaklaşan Etkinlikler{" "}
-      </h3>
-      {/* <Carousel
+      <h3 className='text-white text-3xl font-bold mb-8'>Yaklaşan Etkinlik</h3>
+      {events.map((event) => (
+        <span>{event.placeName}</span>
+      ))}
+      <Carousel
         infinite={true}
         responsive={responsive}
         removeArrowOnDeviceType={["mobile"]}
@@ -79,26 +77,26 @@ const EventContainer = () => {
           >
             <img
               className=' mb-3 rounded-t h-44 pointer-events-none '
-              src={partyex}
+              src={event.image}
               alt=''
             />
             <div className='text-gray-200 text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
               <IoIosPin />
-              {event.location}
+              {event.placeName}
             </div>
             <div className='text-gray-200 text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
               <IoIosCalendar />
-              {event.date} {event.time}
+              {event.eventDate} {event.eventTime}
             </div>
             <div className='flex items-center w-full  justify-center px-2'>
               <button className=' bg-[#08BCD6] hover:border-neonBlue border-solid border-2 border-transparent transition-all   py-2 rounded text-black w-full'>
-                <span className='font-semibold'>{event.tickets[0]} ₺</span>
+                <span className='font-semibold'>dsadsa ₺</span>
                 <span>'den Başlayan Fiyatlarla </span>
               </button>
             </div>
           </div>
         ))}
-      </Carousel> */}
+      </Carousel>
     </div>
   );
 };

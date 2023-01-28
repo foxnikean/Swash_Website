@@ -11,6 +11,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import useAuthentication from "../utils/hooks/UseAuthHook";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { v4 as uuidv4 } from 'uuid';
 
 const AddEventPage = () => {
   const [file, setFile] = useState([]);
@@ -25,7 +26,8 @@ const AddEventPage = () => {
     if (!file) {
       alert("Please upload an image first!");
     }
-    const storageRef = ref(storage, `/events/${user.uid}`); // progress can be paused and resumed. It also exposes progress updates. // Receives the storage reference and the file to upload.
+    
+    const storageRef = ref(storage, `/events/${uuidv4()}`); // progress can be paused and resumed. It also exposes progress updates. // Receives the storage reference and the file to upload.
     const uploadTask = uploadBytesResumable(storageRef, file);
     uploadTask.on(
       "state_changed",
@@ -37,6 +39,7 @@ const AddEventPage = () => {
       },
       (err) => console.log(err),
       () => {
+        alert('Image Uploaded')
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           console.log(url);
@@ -81,7 +84,7 @@ const AddEventPage = () => {
             }}
             onSubmit={(values, { setSubmitting }) => {
               console.log(values);
-              setDoc(doc(db, "events", values.eventName), {
+              setDoc(doc(db, `events`, values.eventName), {
                 eventName: values.eventName,
                 organisatorName: values.organisatorName,
                 eventType: values.eventType,
