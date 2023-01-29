@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   return (
     <div className=' bg-black min-h-screen min-w-screen '>
@@ -21,6 +22,15 @@ const LoginPage = () => {
             ) {
               errors.email = "Geçersiz e-posta adresi";
             }
+            if(!values.password){
+             
+
+              errors.password = "Gerekli"
+            }else if (
+              !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i.test(values.password)
+            ) {
+              errors.password = "Şifre en az 8 karakter, en az bir büyük harf, en az bir küçük harf ve en az bir numara içermelidir."
+            }
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
@@ -33,10 +43,10 @@ const LoginPage = () => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage);
+                setError("Giriş bilgilerini kontrol ediniz.");
               });
           }}
         >
-          
           {({ isSubmitting }) => (
             <Form className='flex flex-col mt-12 gap-8 w-full items-center justify-center'>
               <div className=' '>
@@ -52,7 +62,7 @@ const LoginPage = () => {
                   component='div'
                 />
               </div>
-              <div className=' '>
+              <div className=' flex flex-col'>
                 <Field
                   className='bg-stone-900 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-gray-200 focus:border-neonBlue transition-all'
                   type='password'
@@ -60,15 +70,19 @@ const LoginPage = () => {
                   placeholder='Şifre'
                 />
                 <ErrorMessage
-                  className='text-neonBlue mt-3'
+                  className='text-neonBlue mt-3 '
                   name='password'
                   component='div'
                 />
               </div>
-              <Link to='/Resetpass' className='text-neonBlue underline'>
-                
-                Şifremi Unuttum
-              </Link>
+                <span className='text-neonBlue mt-4'>{error}</span>
+              <div className="flex gap-1">
+                <Link to='/Resetpass' className='text-neonBlue underline '>
+                  Şifremi Unuttum
+                </Link>
+                <span className="text-gray-400 cursor-default select-none">/</span>
+                <Link to='/Register' className='text-neonBlue underline'>Kayıt Ol</Link>
+              </div>
               <button
                 className='bg-neonBlue w-36 md:w-72 ml-auto mr-auto py-4 hover:bg-neonBlue transition-all'
                 type='submit'
