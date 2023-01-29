@@ -19,14 +19,15 @@ function App() {
       <Route path='/:id/Profile' element={<Profile />} />{" "}
       <Route path='/AddProfilePic' element={<AddProfilePic />} />{" "}
       <Route path='/AddEvent' element={<AddEventPage />} />{" "}
+      <Route path='/Event/:id' element={<EventPage />} />{" "}
     </Routes>
   ) : (
     <Routes>
       <Route path='/' element={<Homepage />} />{" "}
       <Route path='/Register' element={<RegisterPage />} />{" "}
+      <Route path='/Event/:id' element={<EventPage />} />{" "}
       <Route path='/Login' element={<LoginPage />} />{" "}
       <Route path='/Resetpass' element={<ResetPassword />} />{" "}
-      <Route path='/Event/:id' element={<EventPage />} />{" "}
     </Routes>
   );
 }

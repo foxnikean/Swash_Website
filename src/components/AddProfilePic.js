@@ -14,12 +14,16 @@ const AddProfilePic = () => {
 
   function handleChange(event) {
     setFile(event.target.files[0]);
+    console.log("first function end")
+    if  (!file)  {
+      alert("Lütfen önce bir resim ekleyin.");
+    } else{
+      handleUpload()
+    }
   }
   const handleUpload = () => {
-    if (!file) {
-      alert("Please upload an image first!");
-    }
-    const storageRef = ref(storage, `/users/${user.uid}`); // progress can be paused and resumed. It also exposes progress updates. // Receives the storage reference and the file to upload.
+   
+    const storageRef =  ref(storage, `/users/${user.uid}`); // progress can be paused and resumed. It also exposes progress updates. // Receives the storage reference and the file to upload.
     const uploadTask = uploadBytesResumable(storageRef, file);
     uploadTask.on(
       "state_changed",
@@ -56,7 +60,7 @@ const AddProfilePic = () => {
         {url ? (
           <img
             src={url}
-            className='w-48 h-48 rounded-full border-2 border-neonBlue'
+            className='w-48 h-48 my-12 rounded-full border-2 border-neonBlue'
           />
         ) : (
           <label
@@ -79,9 +83,8 @@ const AddProfilePic = () => {
       </div>
       <button
         className='bg-neonBlue text-black px-16 py-4 font-semibold hover:bg-cyan-400 rounded-sm transition-all'
-        onClick={handleUpload}
       >
-        Resim Ekle
+        Anasayfaya Geç
       </button>
       <Link className='mt-5 text-gray-500 underline' to='/'>Atla</Link>
     </div>

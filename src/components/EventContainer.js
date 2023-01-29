@@ -58,6 +58,7 @@ const EventContainer = () => {
         responsive={responsive}
         removeArrowOnDeviceType={["mobile"]}
         centerMode={true}
+        ssr
         customLeftArrow={
           <IoIosArrowBack className='absolute top-0 left-0 cursor-pointer text-6xl text-neonBlue bg-black h-full bg-opacity-90' />
         }
@@ -65,13 +66,11 @@ const EventContainer = () => {
           <IoIosArrowForward className='absolute top-0 right-0 cursor-pointer  text-6xl text-neonBlue bg-black h-full bg-opacity-90' />
         }
         className='cursor-pointer'
-        swipeable={true}
-        draggable={true}
       >
         {events.map((event) => (
           <div
             onClick={() => {
-              navigate(`/Event/${Party}`, { state: { events } });
+              navigate(`/Event/${event.eventName}`, { state: { event } });
             }}
             className='border-4 border-mor w-80  px-2 pt-2 bg-white pb-3 rounded-md flex  flex-col gap-2 mx-4 select-none'
           >
