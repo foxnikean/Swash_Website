@@ -27,11 +27,11 @@ const EventContainer = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 2,
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      items: 1,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -48,7 +48,7 @@ const EventContainer = () => {
     handleClick();
   }, []);
   return (
-    <div >
+    <div className="container mx-auto px-36">
       <h3 className='text-white  mt-10 text-3xl font-bold mb-8'>
         Yaklaşan Etkinlik
       </h3>
@@ -56,15 +56,14 @@ const EventContainer = () => {
         infinite={true}
         responsive={responsive}
         removeArrowOnDeviceType={["mobile"]}
-        centerMode={true}
         ssr
         customLeftArrow={
-          <IoIosArrowBack className='absolute top-0 left-0 cursor-pointer text-6xl text-white rounded bg-mor h-full bg-opacity-30' />
+          <IoIosArrowBack className='absolute top-50 left-36 cursor-pointer text-6xl text-white rounded  h-full bg-opacity-30 ' />
         }
         customRightArrow={
-          <IoIosArrowForward className='absolute top-0 right-0 cursor-pointer  text-6xl rounded text-white bg-mor rounded-l h-full bg-opacity-50' />
+          <IoIosArrowForward className='absolute top-50 right-52 cursor-pointer  text-6xl rounded text-white  rounded-l h-full bg-opacity-50' />
         }
-        className='cursor-pointer '
+        className='cursor-pointer  '
       >
         {events.map((event) => (
           <div

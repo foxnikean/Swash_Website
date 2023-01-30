@@ -10,9 +10,9 @@ const Homepage = () => {
   return (
     <div className='bg-backgroundColor min-h-screen h-full min-w-screen'>
         <Navbar />
-      <div className='container mx-auto px-48 '>
         <CarouselComponent  />
         <EventContainer />
+      <div className='container mx-auto px-48 '>
         {/* <div className='flex gap-64 flex-row text-white items-center justify-center lg:justify-between mt-16 flex-wrap'>
           <div className=''>
             <h3 className='text-3xl font-bold mb-16'>Yaklaşan Etkinlikler</h3>

@@ -12,3 +12,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
 }
+
+.react-multi-carousel-list {
+    position: unset !important;
+}
