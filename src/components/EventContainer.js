@@ -27,7 +27,7 @@ const EventContainer = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -61,7 +61,7 @@ const EventContainer = () => {
           <IoIosArrowBack className='absolute top-50 left-36 cursor-pointer text-6xl text-white rounded  h-full bg-opacity-30 ' />
         }
         customRightArrow={
-          <IoIosArrowForward className='absolute top-50 right-52 cursor-pointer  text-6xl rounded text-white  rounded-l h-full bg-opacity-50' />
+          <IoIosArrowForward className='absolute right-28 top-50 cursor-pointer  text-6xl rounded text-white  rounded-l h-full bg-opacity-50' />
         }
         className='cursor-pointer  '
       >
@@ -70,10 +70,10 @@ const EventContainer = () => {
             onClick={() => {
               navigate(`/Event/${event.eventName}`, { state: { event } });
             }}
-            className=' w-80 bg-white pb-3 rounded-3xl flex  flex-col gap-2 mx-4 select-none'
+            className='  bg-white pb-3 w-5/6 rounded-3xl flex  flex-col gap-2 mx-4 select-none'
           >
             <img
-              className=' mb-1 rounded-t-3xl h-44 pointer-events-none '
+              className=' mb-1 rounded-t-3xl h-44  pointer-events-none '
               src={event.image}
               alt=''
             />
