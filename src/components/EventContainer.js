@@ -49,7 +49,7 @@ const EventContainer = () => {
   }, []);
   return (
     <div className=''>
-      <h3 className='text-white mt-10 text-3xl font-bold mb-8'>
+      <h3 className='text-white  mt-10 text-3xl font-bold mb-8'>
         
         Yaklaşan Etkinlik
       </h3>
@@ -79,11 +79,11 @@ const EventContainer = () => {
               src={event.image}
               alt=''
             />
-            <span className="self-center font-bold text-2xl text-shadow-2xl" >{event.eventName}</span>
-            <div className='text-black font-semibold text-lg flex gap-1  text-shadow-md md:gap-3 ml-2 items-center justify-start'>
+            <span className="self-center font-bold text-2xl " style={{textShadow:"0px 4px 4px grey "}}>{event.eventName}</span>
+            <div className='text-black font-semibold text-lg flex gap-1  text-shadow-md md:gap-3 ml-2 items-center justify-start' style={{textShadow:"0px 2px 4px grey "}}>
               <IoIosPin /> {event.placeName}
             </div>
-            <div className='text-black font-semibold text-lg flex gap-1 md:gap-3 ml-2  text-shadow-md items-center justify-start'>
+            <div className='text-black font-semibold text-lg flex gap-1 md:gap-3 ml-2  text-shadow-md items-center justify-start' style={{textShadow:"0px 2px 4px grey "}}>
               <IoIosCalendar /> {event.eventDate} {event.eventTime}
             </div>
             <div className='flex items-center w-full  justify-center px-2'>
