@@ -74,7 +74,7 @@ const EventContainer = () => {
             className=' w-80 bg-white pb-3 rounded-3xl flex  flex-col gap-2 mx-4 select-none'
           >
             <img
-              className=' mb-3 rounded-t-3xl h-44 pointer-events-none '
+              className=' mb-1 rounded-t-3xl h-44 pointer-events-none '
               src={event.image}
               alt=''
             />
