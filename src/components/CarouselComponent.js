@@ -161,10 +161,10 @@ export const Card = React.memo(function (props) {
 //         removeArrowOnDeviceType={["mobile"]}
 //         centerMode={true}
 //         customLeftArrow={
-//           <IoIosArrowBack className='absolute top-0 left-0 cursor-pointer text-6xl text-neonBlue bg-black h-full bg-opacity-90' />
+//           <IoIosArrowBack className='absolute top-0 left-0 cursor-pointer text-6xl text-mor bg-black h-full bg-opacity-90' />
 //         }
 //         customRightArrow={
-//           <IoIosArrowForward className='absolute top-0 right-0 cursor-pointer  text-6xl text-neonBlue bg-black h-full bg-opacity-90' />
+//           <IoIosArrowForward className='absolute top-0 right-0 cursor-pointer  text-6xl text-mor bg-black h-full bg-opacity-90' />
 //         }
 //         className='cursor-pointer'
 //         swipeable={true}

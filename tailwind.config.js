@@ -9,7 +9,7 @@ module.exports = {
             },
             colors: {
                 backgroundColor: "#210031",
-                neonBlue: "#45E8FF",
+                mor: "#45E8FF",
                 turkuaz: "#4D6E75",
                 mor: "#6400FB",
                 lightPurple: "#7B28FA"

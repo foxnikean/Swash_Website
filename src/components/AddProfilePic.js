@@ -62,7 +62,7 @@ const AddProfilePic = () => {
         {file ? (
           <img
             src={URL.createObjectURL(file)}
-            className='w-48 h-48 my-12 rounded-full border-2 border-neonBlue'
+            className='w-48 h-48 my-12 rounded-full border-2 border-mor'
           />
         ) : (
           <label
@@ -84,7 +84,7 @@ const AddProfilePic = () => {
         <span className='text-gray-500'>Zorunlu Değil*</span>
       </div>
       {file ? (
-        <button className='bg-neonBlue text-black px-16 py-4 font-semibold hover:bg-cyan-400 rounded-sm transition-all mt-5' onClick={handleUpload}>
+        <button className='bg-mor text-black px-16 py-4 font-semibold hover:bg-cyan-400 rounded-sm transition-all mt-5' onClick={handleUpload}>
           Resmi Yükle
         </button>
       ) : null}

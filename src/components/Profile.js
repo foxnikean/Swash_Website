@@ -12,8 +12,8 @@ const Profile = () => {
         <Navbar />
         <div className='text-white'>
           <div className='flex items-center gap-5'>
-            <IoIosContact className='text-9xl text-neonBlue' />
-            <span className='text-6xl text-neonBlue'> {id} </span>{" "}
+            <IoIosContact className='text-9xl text-mor' />
+            <span className='text-6xl text-mor'> {id} </span>{" "}
           </div>{" "}
         </div>{" "}
       </div>{" "}

@@ -22,7 +22,6 @@ const Footer = () => {
       </div>
       <div className='flex items-center  w-full mt-12 justify-between flex-col lg:flex-row gap-3 lg:gap-0'>
         <span className='text-gray-400'>
-          
           Copyright Swash Bilet Basım ve Dağıtım A.Ş
         </span>
         <div className='flex gap-3 text-gray-400 items-center justify-center'>

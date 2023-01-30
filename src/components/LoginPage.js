@@ -50,40 +50,40 @@ const LoginPage = () => {
             <Form className='flex flex-col mt-12 gap-8 w-full items-center justify-center'>
               <div className=' '>
                 <Field
-                  className='bg-stone-900 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-gray-200 focus:border-neonBlue transition-all'
+                  className='bg-stone-900 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-gray-200 focus:border-mor transition-all'
                   type='email'
                   name='email'
                   placeholder='E-Posta'
                 />
                 <ErrorMessage
-                  className='text-neonBlue mt-3'
+                  className='text-mor mt-3'
                   name='email'
                   component='div'
                 />
               </div>
               <div className=' flex flex-col'>
                 <Field
-                  className='bg-stone-900 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-gray-200 focus:border-neonBlue transition-all'
+                  className='bg-stone-900 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-gray-200 focus:border-mor transition-all'
                   type='password'
                   name='password'
                   placeholder='Şifre'
                 />
                 <ErrorMessage
-                  className='text-neonBlue mt-3 '
+                  className='text-mor mt-3 '
                   name='password'
                   component='div'
                 />
               </div>
-                <span className='text-neonBlue mt-4'>{error}</span>
+                <span className='text-mor mt-4'>{error}</span>
               <div className="flex gap-1">
-                <Link to='/Resetpass' className='text-neonBlue underline '>
+                <Link to='/Resetpass' className='text-mor underline '>
                   Şifremi Unuttum
                 </Link>
                 <span className="text-gray-400 cursor-default select-none">/</span>
-                <Link to='/Register' className='text-neonBlue underline'>Kayıt Ol</Link>
+                <Link to='/Register' className='text-mor underline'>Kayıt Ol</Link>
               </div>
               <button
-                className='bg-neonBlue w-36 md:w-72 ml-auto mr-auto py-4 hover:bg-neonBlue transition-all'
+                className='bg-mor w-36 md:w-72 ml-auto mr-auto py-4 hover:bg-mor transition-all'
                 type='submit'
                 disabled={isSubmitting}
               >

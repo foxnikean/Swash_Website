@@ -27,7 +27,7 @@ const EventContainer = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4,
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -55,13 +55,13 @@ const EventContainer = () => {
       <Carousel
         infinite={true}
         responsive={responsive}
-        removeArrowOnDeviceType={["mobile"]}
+        removeArrowOnDeviceType={["mobile","tablet"]}
         ssr
         customLeftArrow={
-          <IoIosArrowBack className='absolute top-50 left-36 cursor-pointer text-6xl text-white rounded  h-full bg-opacity-30 ' />
+          <IoIosArrowBack className='absolute top-50 left-0 cursor-pointer text-6xl text-white rounded  h-full bg-opacity-30 ' />
         }
         customRightArrow={
-          <IoIosArrowForward className='absolute right-28 top-50 cursor-pointer  text-6xl rounded text-white  rounded-l h-full bg-opacity-50' />
+          <IoIosArrowForward className='absolute right-0 top-50 cursor-pointer  text-6xl  text-white  rounded-l h-full bg-opacity-50' />
         }
         className='cursor-pointer  '
       >

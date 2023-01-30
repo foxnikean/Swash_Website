@@ -47,7 +47,7 @@ const EventPage = () => {
               sapiente exercitationem, rerum est consectetur nulla Temporibus
               earum cumque omnis tempore illum.
             </span>
-            <button className="text-neonBlue border-[0.5px] rounded py-2 border-neonBlue w-52">Devamını Oku</button>
+            <button className="text-mor border-[0.5px] rounded py-2 border-mor w-52">Devamını Oku</button>
           </div>
           <div className=' bg-turkuaz mt-5 flex flex-col py-8 px-12 text-white'>
             <span className="font-bold text-xl mb-5">Mekan:</span>
@@ -72,7 +72,7 @@ const EventPage = () => {
               sapiente exercitationem, rerum est consectetur nulla Temporibus
               earum cumque omnis tempore illum.
             </span>
-            <button className="text-neonBlue border-[0.5px] rounded py-2 border-neonBlue w-52">Devamını Oku</button>
+            <button className="text-mor border-[0.5px] rounded py-2 border-mor w-52">Devamını Oku</button>
 
           </div>
         </div>

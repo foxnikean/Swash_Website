@@ -15,11 +15,10 @@ const ResetPassword = () => {
         className='self-start '
       >
         <IoIosClose className='text-white text-6xl absolute top-0' />
-      </button>
+      </button>{" "}
       <h3 className='text-white font-bold lg:text-5xl text-xl mb-16'>
-        
-        Şifremi Unuttum
-      </h3>
+        Şifremi Unuttum{" "}
+      </h3>{" "}
       <div className='container mx-auto flex-col flex items-center justify-center h-full'>
         <Formik
           initialValues={{ email: "" }}
@@ -51,33 +50,32 @@ const ResetPassword = () => {
               });
           }}
         >
-          
           {({ isSubmitting }) => (
             <Form className='flex flex-col mt-12 gap-8 w-full items-center justify-center'>
               <div className=' '>
                 <Field
-                  className='bg-stone-900 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-gray-200 focus:border-neonBlue transition-all'
+                  className='bg-stone-900 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-gray-200 focus:border-mor transition-all'
                   type='email'
                   name='email'
                   placeholder='E-Posta'
                 />
                 <ErrorMessage
-                  className='text-neonBlue mt-3'
+                  className='text-mor mt-3'
                   name='email'
                   component='div'
                 />
-              </div>
+              </div>{" "}
               <button
-                className='bg-neonBlue w-36 md:w-72 ml-auto mr-auto py-4 hover:bg-neonBlue transition-all'
+                className='bg-mor w-36 md:w-72 ml-auto mr-auto py-4 hover:bg-mor transition-all'
                 type='submit'
                 disabled={isSubmitting}
               >
-                Gönder
-              </button>
+                Gönder{" "}
+              </button>{" "}
             </Form>
-          )}
-        </Formik>
-      </div>
+          )}{" "}
+        </Formik>{" "}
+      </div>{" "}
     </div>
   );
 };
