@@ -12,6 +12,7 @@ module.exports = {
                 neonBlue: "#45E8FF",
                 turkuaz: "#4D6E75",
                 mor: "#6400FB",
+                lightPurple: "#7B28FA"
 
             },
         },

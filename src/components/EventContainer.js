@@ -48,9 +48,8 @@ const EventContainer = () => {
     handleClick();
   }, []);
   return (
-    <div className=''>
+    <div >
       <h3 className='text-white  mt-10 text-3xl font-bold mb-8'>
-        
         Yaklaşan Etkinlik
       </h3>
       <Carousel
@@ -65,29 +64,33 @@ const EventContainer = () => {
         customRightArrow={
           <IoIosArrowForward className='absolute top-0 right-0 cursor-pointer  text-6xl rounded text-white bg-mor rounded-l h-full bg-opacity-50' />
         }
-        className='cursor-pointer'
+        className='cursor-pointer '
       >
         {events.map((event) => (
           <div
             onClick={() => {
               navigate(`/Event/${event.eventName}`, { state: { event } });
             }}
-            className=' w-80 bg-white pb-3 rounded-xl flex  flex-col gap-2 mx-4 select-none'
+            className=' w-80 bg-white pb-3 rounded-3xl flex  flex-col gap-2 mx-4 select-none'
           >
             <img
-              className=' mb-3 rounded-t-xl h-44 pointer-events-none '
+              className=' mb-3 rounded-t-3xl h-44 pointer-events-none '
               src={event.image}
               alt=''
             />
-            <span className="self-center font-bold text-2xl " style={{textShadow:"0px 4px 4px grey "}}>{event.eventName}</span>
-            <div className='text-black font-semibold text-lg flex gap-1  text-shadow-md md:gap-3 ml-2 items-center justify-start' style={{textShadow:"0px 2px 4px grey "}}>
-              <IoIosPin /> {event.placeName}
-            </div>
-            <div className='text-black font-semibold text-lg flex gap-1 md:gap-3 ml-2  text-shadow-md items-center justify-start' style={{textShadow:"0px 2px 4px grey "}}>
-              <IoIosCalendar /> {event.eventDate} {event.eventTime}
+            <span className='self-center font-medium text-xl '>
+              {event.eventName}
+            </span>
+            <div className="flex flex-col border-t-[1px] pt-3">
+              <div className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
+                <IoIosPin /> {event.placeName}
+              </div>
+              <div className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
+                <IoIosCalendar /> {event.eventDate} {event.eventTime}
+              </div>
             </div>
             <div className='flex items-center w-full  justify-center px-2'>
-              <button className=' bg-mor hover:border-neonBlue border-solid border-2 border-transparent  shadow-2xl shadow-black  transition-all py-2 rounded text-white w-full'>
+              <button className=' bg-lightPurple  border-solid border-2 rounded-xl border-transparent  shadow-md shadow-mor  transition-all py-2 text-white w-full'>
                 <span className='font-semibold'> {event.ticketPrice} ₺</span>
                 <span> 'den Başlayan Fiyatlarla </span>
               </button>
