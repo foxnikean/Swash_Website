@@ -27,7 +27,7 @@ const EventContainer = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 2,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -49,7 +49,7 @@ const EventContainer = () => {
   }, []);
   return (
     <div className=''>
-      <h3 className='text-white text-3xl font-bold mb-8'>
+      <h3 className='text-white mt-10 text-3xl font-bold mb-8'>
         
         Yaklaşan Etkinlik
       </h3>
@@ -60,10 +60,10 @@ const EventContainer = () => {
         centerMode={true}
         ssr
         customLeftArrow={
-          <IoIosArrowBack className='absolute top-0 left-0 cursor-pointer text-6xl text-neonBlue bg-black h-full bg-opacity-90' />
+          <IoIosArrowBack className='absolute top-0 left-0 cursor-pointer text-6xl text-white rounded bg-mor h-full bg-opacity-30' />
         }
         customRightArrow={
-          <IoIosArrowForward className='absolute top-0 right-0 cursor-pointer  text-6xl text-neonBlue bg-black h-full bg-opacity-90' />
+          <IoIosArrowForward className='absolute top-0 right-0 cursor-pointer  text-6xl rounded text-white bg-mor rounded-l h-full bg-opacity-50' />
         }
         className='cursor-pointer'
       >
@@ -72,10 +72,10 @@ const EventContainer = () => {
             onClick={() => {
               navigate(`/Event/${event.eventName}`, { state: { event } });
             }}
-            className='border-4 border-mor w-80  px-2 pt-2 bg-white pb-3 rounded-md flex  flex-col gap-2 mx-4 select-none'
+            className=' w-80 bg-white pb-3 rounded-xl flex  flex-col gap-2 mx-4 select-none'
           >
             <img
-              className=' mb-3 rounded-t h-44 pointer-events-none '
+              className=' mb-3 rounded-t-xl h-44 pointer-events-none '
               src={event.image}
               alt=''
             />

@@ -15,18 +15,18 @@ const EventPage = () => {
   return (
     <div className='bg-backgroundColor min-h-screen h-full min-w-screen'>
       <Navbar />
-      <div className='mx-auto container pb-10'>
+      <div className='mx-auto container pb-10 px-48'>
         <span className='text-white capitalize '>
           {event.eventType}ival / {event.eventName}
         </span>
         <div className='w-3/4 mt-14'>
           <img className='w-full' src={event.image} alt='' />
           <div className='mt-6 flex items-center gap-6'>
-            <span className='flex items-center bg-turkuaz text-white text-2xl py-5 flex-1 px-5 gap-2'>
-              <IoIosPin className='text-6xl' /> {event.placeName}
+            <span className='flex items-center bg-turkuaz text-white text-xl py-5 flex-1 px-5 gap-2'>
+              <IoIosPin className='text-4xl' /> {event.placeName}
             </span>
-            <span className='flex items-center bg-turkuaz text-white text-2xl py-5 flex-1 px-5 gap-2'>
-              <IoIosCalendar className='text-6xl' /> {date}
+            <span className='flex items-center bg-turkuaz text-white text-xl py-5 flex-1 px-5 gap-2'>
+              <IoIosCalendar className='text-4xl' /> {date}
             </span>
           </div>
           <div className=' bg-turkuaz mt-5 flex flex-col py-8 px-12 gap-5 text-white'>

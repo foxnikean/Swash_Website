@@ -101,7 +101,7 @@ export const Card = React.memo(function (props) {
           objectFit: "cover",
           borderRadius: 0,
         }}
-        className='border border-solid border-neonBlue'
+        className='border border-solid border-mor'
         draggable={false}
         src={cover}
       />{" "}

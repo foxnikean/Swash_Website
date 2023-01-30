@@ -23,8 +23,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className=' pb-4 mb-10 border-b-2 border-solid border-neonBlue'>
-      <div className=' flex items-center w-full justify-center  pt-8 lg:justify-center container mx-auto '>
+    <div className=' pb-4 mb-10  bg-mor z-10 w-full bg-opacity-30 '>
+      <div className=' flex items-center w-full justify-center  pt-8 lg:justify-center container mx-auto px-48'>
         <img
           className='lg:w-24 md:w-16 w-12 mr-3'
           onClick={() => handleLogout()}
@@ -57,44 +57,44 @@ const Navbar = () => {
               {" "}
               <li>
                 {user ? (
-                  <button className='text-neonBlue mr-3 text-lg flex items-center justify-center gap-2'>
-                    <img src={user.photoURL} className="w-16 h-16 rounded-full border-2 border-solid border-neonBlue " alt='name' /> {user.displayName}{" "}
+                  <button className='text-white mr-3 text-lg flex items-center justify-center gap-2'>
+                    <img src={user.photoURL} className="w-16 h-16 rounded-full border-2 border-solid border-white " alt='name' /> {user.displayName}{" "}
                   </button>
                 ) : (
                   <button
                     onClick={() => navigate("/Register")}
-                    className='text-neonBlue mr-3 text-lg flex items-center justify-center gap-2'
+                    className='text-white mr-3 text-lg flex items-center justify-center gap-2'
                   >
                     <IoIosContact className='text-3xl' /> Giriş Yap{" "}
                   </button>
                 )}
               </li>{" "}
-              <li className='text-white font-semibold text-xl hover:text-neonBlue transition-all'>
+              <li className='text-white font-semibold text-xl hover:text-white transition-all'>
                 <Link to='/'> Anasayfa </Link>{" "}
               </li>{" "}
-              <li className='text-white font-semibold text-xl hover:text-neonBlue transition-all'>
+              <li className='text-white font-semibold text-xl hover:text-white transition-all'>
                 <Link to='/AddEvent'> Etkinlikler </Link>{" "}
               </li>{" "}
-              <li className='text-white font-semibold text-xl hover:text-neonBlue transition-all'>
+              <li className='text-white font-semibold text-xl hover:text-white transition-all'>
                 <Link> İletişim </Link>{" "}
               </li>{" "}
-              <li className='text-white font-semibold text-xl hover:text-neonBlue transition-all'>
+              <li className='text-white font-semibold text-xl hover:text-white transition-all'>
                 <Link> Organizatörlere Özel </Link>{" "}
               </li>
             </ul>
           ) : null}{" "}
           <ul className=' gap-3 items-center justify-center hidden lg:flex '>
             {" "}
-            <li className='text-white font-semibold text-xl hover:text-neonBlue transition-all'>
+            <li className='text-white font-semibold text-xl hover:text-white transition-all'>
               <Link to='/'> Anasayfa </Link>{" "}
             </li>{" "}
-            <li className='text-white font-semibold text-xl hover:text-neonBlue transition-all'>
+            <li className='text-white font-semibold text-xl hover:text-white transition-all'>
               <Link to='/AddEvent'> Etkinlikler </Link>{" "}
             </li>{" "}
-            <li className='text-white font-semibold text-xl hover:text-neonBlue transition-all'>
+            <li className='text-white font-semibold text-xl hover:text-white transition-all'>
               <Link> İletişim </Link>{" "}
             </li>{" "}
-            <li className='text-white font-semibold text-xl hover:text-neonBlue transition-all'>
+            <li className='text-white font-semibold text-xl hover:text-white transition-all'>
               <Link to='/AddEvent'> Organizatörlere Özel </Link>{" "}
             </li>{" "}
             {user ? (
@@ -102,13 +102,13 @@ const Navbar = () => {
                 onClick={() => navigate("/" + user.displayName + "/Profile")}
                 className='text-[#45E8FF] mr-3 text-lg flex items-center justify-center gap-2'
               >
-                <img src={user.photoURL} className="w-16 h-16 rounded-full border-2 border-solid border-neonBlue "  alt='' />{" "}
+                <img src={user.photoURL} className="w-16 h-16 rounded-full border-2 border-solid border-white "  alt='' />{" "}
                 {user.displayName}{" "}
               </button>
             ) : (
               <button
                 onClick={() => navigate("/Register")}
-                className='text-[#45E8FF] mr-3 text-lg flex items-center justify-center gap-2'
+                className='text-white mr-3 text-lg flex items-center justify-center gap-2'
               >
                 <IoIosContact className='text-3xl' /> Giriş Yap{" "}
               </button>
