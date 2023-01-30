@@ -48,7 +48,7 @@ const EventContainer = () => {
     handleClick();
   }, []);
   return (
-    <div className="container mx-auto px-36">
+    <div className="container mx-auto px-16">
       <h3 className='text-white  mt-10 text-3xl font-bold mb-8'>
         Yaklaşan Etkinlik
       </h3>
