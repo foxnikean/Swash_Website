@@ -3,18 +3,36 @@ import Navbar from "./Navbar";
 import useAuthentication from "../utils/hooks/UseAuthHook";
 import { IoIosContact } from "react-icons/io";
 import { useParams } from "react-router";
-
+import { Link } from "react-router-dom";
+import General from "./profileComponents/General"
 const Profile = () => {
+  const { user } = useAuthentication();
   const { id } = useParams();
   return (
-    <div className='bg-black min-w-screen min-h-screen'>
-      <div className='container mx-auto'>
-        <Navbar />
-        <div className='text-white'>
-          <div className='flex items-center gap-5'>
-            <IoIosContact className='text-9xl text-mor' />
-            <span className='text-6xl text-mor'> {id} </span>{" "}
-          </div>{" "}
+    <div className='bg-backgroundColor min-w-screen min-h-screen'>
+      <Navbar />
+      <div className='container mx-auto px-56'>
+        <div className=' bg-mor '>
+          <div className='px-16 py-12'>
+            <div className=' flex flex-col items-start gap-5'>
+              <img
+                className='w-32 h-32 rounded-full'
+                src={user.photoURL}
+                alt=''
+              />
+              <span className='text-white font-semibold text-2xl'>
+                {user.displayName}
+              </span>
+            </div>
+            <nav className='flex flex-col items-start mt-6 font-semibold text-white gap-4'>
+              <Link>Genel</Link>
+              <Link>Biletlerim</Link>
+              <Link>Şifre Değiştir</Link>
+            </nav>
+          </div>
+          <div>
+            <General/>
+          </div>
         </div>{" "}
       </div>{" "}
     </div>

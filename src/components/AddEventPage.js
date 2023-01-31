@@ -14,13 +14,15 @@ import { auth } from "../utils/firebase";
 import { v4 as uuidv4 } from "uuid";
 
 const AddEventPage = () => {
-  const [file, setFile] = useState([]);
+  const [file, setFile] = useState();
+  const [fileUrl, setFileUrl] = useState();
   const [percent, setPercent] = useState(0); // Handle file upload event and update state
   const [url, setUrl] = useState(""); // Handle file upload event and update state
   const { user } = useAuthentication();
 
   function handleChange(event) {
     setFile(event.target.files[0]);
+    setFileUrl(URL.createObjectURL(file))
   }
   const handleUpload = () => {
     if (!file) {
@@ -52,9 +54,9 @@ const AddEventPage = () => {
   return (
     <div className='bg-backgroundColor min-w-screen min-h-screen flex flex-col '>
       <Navbar />
-      <h3 className='bg-sky-500 w-80 text-center py-3 rounded-r -mt-4 text-white font-semibold'>
-        Etkinlik Oluştur{" "}
-      </h3>{" "}
+      <h3 className='bg-mor w-80 text-center py-3 rounded-r -mt-4 text-white font-semibold'>
+        Etkinlik Oluştur
+      </h3>
       <div className='container mx-auto mt-12'>
         <div className='flex items-start gap-32 pb-24'>
           <Formik
@@ -115,84 +117,84 @@ const AddEventPage = () => {
                 <div className='flex w-full justify-center '>
                   <div className='text-white w-full flex flex-col gap-0.5 '>
                     <h2 className='text-2xl px-28 border-b-2 border-solid border-mor mb-8 text-center'>
-                      Etkinlik Bilgileri{" "}
-                    </h2>{" "}
+                      Etkinlik Bilgileri
+                    </h2>
                     <div className='flex gap-0.5 w-full '>
                       <div className='flex flex-col  w-full  items-center justify-center gap-0.5'>
-                        <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4 rounded-tl-lg'>
-                          <h4 className='text-2xl'> Etkinlik Adı: </h4>{" "}
+                        <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4 rounded-tl-lg'>
+                          <h4 className='text-2xl'> Etkinlik Adı: </h4>
                           <Field
                             className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                             type='text'
                             name='eventName'
                             placeholder='Etkinliğinizin ismini giriniz.'
                           />
-                        </div>{" "}
-                        <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4 '>
-                          <h4 className='text-2xl'> Organizatör Adı: </h4>{" "}
+                        </div>
+                        <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4 '>
+                          <h4 className='text-2xl'> Organizatör Adı: </h4>
                           <Field
                             className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                             type='text'
                             name='organisatorName'
                             placeholder='Düzenleyen ismini giriniz.'
                           />
-                        </div>{" "}
-                        <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4 rounded-bl-lg '>
-                          <h4 className='text-2xl'> Etkinlik Türü: </h4>{" "}
+                        </div>
+                        <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4 rounded-bl-lg '>
+                          <h4 className='text-2xl'> Etkinlik Türü: </h4>
                           <Field
                             className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                             as='select'
                             name='eventType'
                           >
-                            <option value='fest'> Festival </option>{" "}
-                            <option value='concert'> Konser </option>{" "}
-                            <option value='party'> Party </option>{" "}
-                          </Field>{" "}
-                        </div>{" "}
-                      </div>{" "}
+                            <option value='fest'> Festival </option>
+                            <option value='concert'> Konser </option>
+                            <option value='party'> Party </option>
+                          </Field>
+                        </div>
+                      </div>
                       <div className='flex flex-col  w-full items-center justify-center gap-0.5'>
-                        <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4'>
-                          <h4 className='text-2xl'> Kategori: </h4>{" "}
+                        <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                          <h4 className='text-2xl'> Kategori: </h4>
                           <Field
                             className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                             as='select'
                             name='eventCat'
                           >
-                            <option value='music'> Müzik </option>{" "}
-                            <option value='dance'> Dans </option>{" "}
-                          </Field>{" "}
-                        </div>{" "}
-                        <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4 '>
-                          <h4 className='text-2xl'> Alt Kategori: </h4>{" "}
+                            <option value='music'> Müzik </option>
+                            <option value='dance'> Dans </option>
+                          </Field>
+                        </div>
+                        <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4 '>
+                          <h4 className='text-2xl'> Alt Kategori: </h4>
                           <Field
                             className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                             as='select'
                             name='subEventCat'
                           >
                             <option value='alternative'>
-                              Alternatif Müzik{" "}
-                            </option>{" "}
-                          </Field>{" "}
-                        </div>{" "}
-                        <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4  '>
-                          <h4 className='text-2xl'> Katılımcı Görünümü: </h4>{" "}
+                              Alternatif Müzik
+                            </option>
+                          </Field>
+                        </div>
+                        <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4  '>
+                          <h4 className='text-2xl'> Katılımcı Görünümü: </h4>
                           <Field
                             className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                             as='select'
                             name='showVisitors'
                             placeholder=' Etkinliğinize uygun olanı seçiniz.'
                           >
-                            <option value='public'> Herkes </option>{" "}
-                            <option value='private'> Özel </option>{" "}
+                            <option value='public'> Herkes </option>
+                            <option value='private'> Özel </option>
                             <option value='ticketOwners'>
-                              Sadece Bilet Alanlar{" "}
-                            </option>{" "}
-                          </Field>{" "}
-                        </div>{" "}
-                      </div>{" "}
+                              Sadece Bilet Alanlar
+                            </option>
+                          </Field>
+                        </div>
+                      </div>
                       <div className='flex flex-col  w-full items-center justify-center gap-0.5'>
-                        <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4 rounded-tr-lg'>
-                          <h4 className='text-2xl'> Mekan Türü: </h4>{" "}
+                        <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4 rounded-tr-lg'>
+                          <h4 className='text-2xl'> Mekan Türü: </h4>
                           <Field
                             className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                             as='select'
@@ -201,62 +203,62 @@ const AddEventPage = () => {
                           >
                             <option value='standart'>
                               Standart(Belirli düzen gereksinimleri olmayan
-                              etkinlikler){" "}
-                            </option>{" "}
+                              etkinlikler)
+                            </option>
                             <option value='seated'>
                               Belirli Düzen(Oturma düzenine sahip olan
-                              etkinlikler){" "}
-                            </option>{" "}
-                          </Field>{" "}
-                        </div>{" "}
-                        <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4 '>
-                          <h4 className='text-2xl'> Mekan İsmi: </h4>{" "}
+                              etkinlikler)
+                            </option>
+                          </Field>
+                        </div>
+                        <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4 '>
+                          <h4 className='text-2xl'> Mekan İsmi: </h4>
                           <Field
                             className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                             type='text'
                             name='placeName'
                             placeholder=' Etkinliğin gerçekleşeceği mekanın adını yazınız.'
                           />
-                        </div>{" "}
-                        <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4 rounded-br-lg '>
-                          <h4 className='text-2xl'> Mekan Adresi: </h4>{" "}
+                        </div>
+                        <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4 rounded-br-lg '>
+                          <h4 className='text-2xl'> Mekan Adresi: </h4>
                           <Field
                             className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                             type='text'
                             name='placeAddress'
                             placeholder=' Etkinliğin gerçekleşeceği mekanın adresini yazınız.'
                           />
-                        </div>{" "}
-                      </div>{" "}
-                    </div>{" "}
-                  </div>{" "}
-                </div>{" "}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div className='flex w-full justify-center'>
                   <div className='text-white flex w-full flex-col gap-0.5'>
                     <div className='flex gap-0.5 w-full'>
                       <div className='flex flex-col  w-full items-center justify-center gap-0.5'>
-                        <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4'>
-                          <h4 className='text-2xl'> Etkinlik Tarihi </h4>{" "}
+                        <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                          <h4 className='text-2xl'> Etkinlik Tarihi </h4>
                           <Field
                             className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                             type='date'
                             name='eventDate'
                             placeholder=' Etkinliğinize uygun olanı seçiniz.'
                           />
-                        </div>{" "}
-                        <div className=' bg-turkuaz h-64 flex flex-col w-full px-4 py-4  '>
-                          <h4 className='text-2xl'> Etkinlik Açıklaması </h4>{" "}
+                        </div>
+                        <div className=' bg-mor bg-opacity-50 h-64 flex flex-col w-full px-4 py-4  '>
+                          <h4 className='text-2xl'> Etkinlik Açıklaması </h4>
                           <Field
                             className='bg-transparent border-b-2 h-full border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                             as='textarea'
                             name='eventDesc'
                             placeholder=' Etkinliğinizin açıklamasını giriniz.'
                           />
-                        </div>{" "}
-                      </div>{" "}
+                        </div>
+                      </div>
                       <div className='flex flex-col  w-full items-center justify-center gap-0.5'>
-                        <div className=' bg-turkuaz  h-28 flex justify-center flex-col w-full px-4 '>
-                          <h4 className='text-2xl'> Etkinlik Zamanı </h4>{" "}
+                        <div className=' bg-mor bg-opacity-50  h-28 flex justify-center flex-col w-full px-4 '>
+                          <h4 className='text-2xl'> Etkinlik Zamanı </h4>
                           <Field
                             className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none fill-white text-gray-200 focus:border-mor transition-all'
                             type='time'
@@ -264,38 +266,38 @@ const AddEventPage = () => {
                             required
                             pattern='\d{4}-\d{2}-\d{2}'
                           />
-                        </div>{" "}
-                        <div className=' bg-turkuaz h-64 flex justify-center flex-col w-full px-4 rounded-br-lg py-4'>
-                          <h4 className='text-2xl'> Etkinlik Kuralları </h4>{" "}
+                        </div>
+                        <div className=' bg-mor bg-opacity-50 h-64 flex justify-center flex-col w-full px-4 rounded-br-lg py-4'>
+                          <h4 className='text-2xl'> Etkinlik Kuralları </h4>
                           <Field
                             className='bg-transparent h-full border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                             as='textarea'
                             name='eventRules'
                             placeholder=' Etkinliğinizin kurallarını giriniz.'
                           />
-                        </div>{" "}
-                      </div>{" "}
-                    </div>{" "}
+                        </div>
+                      </div>
+                    </div>
                     <div className='flex flex-col items-center justify-center mt-20'>
                       <h2 className='text-2xl px-28 border-b-2 border-solid border-mor mb-8 text-center'>
-                        Etkinlik Görselleri{" "}
-                      </h2>{" "}
+                        Etkinlik Görseli
+                      </h2>
                       <div className='flex mt-10 items-center justify-center w-full gap-3'>
                         <div className='flex w-full items-center justify-center flex-col'>
                           <label
                             htmlFor='image1'
                             className='w-2/3 h-72 flex items-center border  justify-center'
                           >
-                            {url ? (
+                            {file ? (
                               <img
                                 className='w-full h-72 border '
-                                src={url}
+                                src={URL.createObjectURL(file)}
                                 alt=''
                               />
                             ) : (
                               <IoIosAdd />
-                            )}{" "}
-                          </label>{" "}
+                            )}
+                          </label>
                           <input
                             className='invisible w-0'
                             id='image1'
@@ -307,166 +309,178 @@ const AddEventPage = () => {
                             onClick={handleUpload}
                             className='cursor-pointer'
                           >
-                            {" "}
-                            Resim Ekle{" "}
-                          </span>{" "}
-                        </div>{" "}
-                      </div>{" "}
-                    </div>{" "}
+                            Resim Ekle
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                     <div className='flex justify-between items-end'>
                       <div className='mt-20 w-2/3'>
                         <h2 className='text-2xl px-28 border-b-2 border-solid border-mor mb-8 text-center'>
-                          Etkinlik Biletleri{" "}
-                        </h2>{" "}
+                          Etkinlik Biletleri
+                        </h2>
                         <div className='flex w-full gap-0.5'>
                           <div className='w-full gap-0.5 flex flex-col'>
-                            <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4'>
-                              <h4 className='text-2xl'> Bilet Adı: </h4>{" "}
+                            <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                              <h4 className='text-2xl'> Bilet Adı: </h4>
                               <Field
                                 className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                                 type='text'
                                 name='ticketName'
                                 placeholder=' Bilet uygun olan ismi yazınız.'
                               />
-                            </div>{" "}
-                            <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4'>
+                            </div>
+                            <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
                               <h4 className='text-2xl'>
-                                Biletin Satışta Kalma Süresi{" "}
-                              </h4>{" "}
+                                Biletin Satışta Kalma Süresi
+                              </h4>
                               <Field
                                 className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                                 as='select'
                                 name='ticketDuration'
                               >
                                 <option value='end'>
-                                  {" "}
-                                  Etkinlik Bitene Kadar{" "}
-                                </option>{" "}
+                                  Etkinlik Bitene Kadar
+                                </option>
                                 <option value='start'>
-                                  {" "}
-                                  Etkinlik Başlayana Kadar{" "}
-                                </option>{" "}
+                                  Etkinlik Başlayana Kadar
+                                </option>
                                 <option value='30'>
-                                  {" "}
-                                  Başlamaya 30 dk Kalaya Kadar{" "}
-                                </option>{" "}
-                                <option value='24'>
-                                  {" "}
-                                  24 saat Kalaya Kadar{" "}
-                                </option>{" "}
-                              </Field>{" "}
-                            </div>{" "}
-                          </div>{" "}
+                                  Başlamaya 30 dk Kalaya Kadar
+                                </option>
+                                <option value='24'>24 saat Kalaya Kadar</option>
+                              </Field>
+                            </div>
+                          </div>
                           <div className='w-full gap-0.5 flex flex-col'>
-                            <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4'>
-                              <h4 className='text-2xl'> Bilet Fiyatı: </h4>{" "}
+                            <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                              <h4 className='text-2xl'> Bilet Fiyatı: </h4>
                               <Field
                                 className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                                 type='number'
                                 name='ticketPrice'
                                 placeholder=' Etkinliğinize uygun olanı seçiniz.'
                               />
-                            </div>{" "}
-                            <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4'>
+                            </div>
+                            <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
                               <h4 className='text-2xl'>
                                 Alınabilir Maksimum Bilet Sayısı:
-                              </h4>{" "}
+                              </h4>
                               <Field
                                 className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                                 type='number'
                                 name='maxTicketAmount'
                                 placeholder=' Bu Bilet Türünden Alınabilir Maksimum Bilet Sayısı'
                               />
-                            </div>{" "}
-                          </div>{" "}
-                        </div>{" "}
+                            </div>
+                          </div>
+                        </div>
                         <button className='flex items-center justify-center gap-2 mt-5 font-semibold text-xl'>
-                          <IoIosAdd /> Bilet Ekle{" "}
-                        </button>{" "}
-                      </div>{" "}
-                      <div className=' w-72 h-80 bg-[#354153] pb-3 rounded-md flex flex-col gap-3 mx-4 select-none'>
-                        <img
-                          className=' mb-3 rounded-t h-44 pointer-events-none '
-                          src={partyex}
-                          alt=''
-                        />
-                        <div className='text-gray-200 text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
-                          <IoIosPin /> {values.placeName}{" "}
-                        </div>{" "}
-                        <div className='text-gray-200 text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
-                          <IoIosCalendar /> {values.eventDate}{" "}
-                        </div>{" "}
+                          <IoIosAdd /> Bilet Ekle
+                        </button>
+                      </div>
+                      <div className='  bg-white pb-3 w-1/5 rounded-3xl flex  flex-col gap-2 mx-4 select-none'>
+                        {file ? (
+                          <img
+                            className=' mb-1 rounded-t-3xl h-44  pointer-events-none '
+                            alt=''
+                            src={URL.createObjectURL(file)}
+
+                          />
+                        ) : (
+                          <img
+                            className=' mb-1 rounded-t-3xl h-44  pointer-events-none '
+                            alt=''
+                            src={partyex}
+                          />
+                        )}
+
+                        <span className='self-center font-medium text-xl '>
+                          {values.eventName}
+                        </span>
+                        <div className='flex flex-col border-t-[1px] pt-3'>
+                          <div className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
+                            <IoIosPin /> {values.placeName}
+                          </div>
+                          <div className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
+                            <IoIosCalendar /> {values.eventDate}{" "}
+                            {values.eventTime}
+                          </div>
+                        </div>
                         <div className='flex items-center w-full  justify-center px-2'>
-                          <button className=' bg-[#08BCD6] hover:border-mor border-solid border-2 border-transparent transition-all   py-2 rounded text-black w-full'>
-                            <span className='font-semibold'> 300 </span>{" "}
-                            <span> 'den Başlayan Fiyatlarla </span>{" "}
-                          </button>{" "}
-                        </div>{" "}
-                      </div>{" "}
+                          <button className=' bg-lightPurple  border-solid border-2 rounded-xl border-transparent  shadow-md shadow-mor  transition-all py-2 text-white w-full'>
+                            <span className='font-semibold'>
+                              {" "}
+                              {values.ticketPrice} ₺
+                            </span>
+                            <span> 'den Başlayan Fiyatlarla </span>
+                          </button>
+                        </div>
+                      </div>
                     </div>
                     <div className='flex items-end justify-between'>
                       <div className='mt-20 w-2/3'>
                         <h2 className='text-2xl px-28 border-b-2 border-solid border-mor mb-8 text-center'>
-                          Sosyal Medya{" "}
-                        </h2>{" "}
+                          Sosyal Medya
+                        </h2>
                         <div className='flex w-full gap-0.5'>
                           <div className='w-full gap-0.5 flex flex-col'>
-                            <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4'>
-                              <h4 className='text-2xl'> Instagram Linki: </h4>{" "}
+                            <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                              <h4 className='text-2xl'> Instagram Linki: </h4>
                               <Field
                                 className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                                 type='url'
                                 name='insta'
                                 placeholder=' Organizasyonunuzun Instagram Linki'
                               />
-                            </div>{" "}
-                            <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4'>
-                              <h4 className='text-2xl'> Twitter Linki: </h4>{" "}
+                            </div>
+                            <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                              <h4 className='text-2xl'> Twitter Linki: </h4>
                               <Field
                                 className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                                 type='url'
                                 name='twitter'
                                 placeholder=' Organizasyonunuzun Twitter Linki'
                               />
-                            </div>{" "}
-                          </div>{" "}
+                            </div>
+                          </div>
                           <div className='w-full gap-0.5 flex flex-col'>
-                            <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4'>
-                              <h4 className='text-2xl'> Facebook Linki: </h4>{" "}
+                            <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                              <h4 className='text-2xl'> Facebook Linki: </h4>
                               <Field
                                 className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                                 type='url'
                                 name='fb'
                                 placeholder='  Organizasyonunuzun Facebook Linki'
                               />
-                            </div>{" "}
-                            <div className=' bg-turkuaz h-28 flex justify-center flex-col w-full px-4'>
-                              <h4 className='text-2xl'> Youtube Linki: </h4>{" "}
+                            </div>
+                            <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                              <h4 className='text-2xl'> Youtube Linki: </h4>
                               <Field
                                 className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
                                 type='url'
                                 name='youtube'
                                 placeholder='  Organizasyonunuzun Youtube Linki'
                               />
-                            </div>{" "}
-                          </div>{" "}
-                        </div>{" "}
-                      </div>{" "}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       <button
                         className='font-bold border-b-2 border-mor w-36 text-2xl'
                         type='submit'
                         disabled={isSubmitting}
                       >
-                        Oluştur{" "}
-                      </button>{" "}
-                    </div>{" "}
-                  </div>{" "}
-                </div>{" "}
+                        Oluştur
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </Form>
-            )}{" "}
-          </Formik>{" "}
-        </div>{" "}
-      </div>{" "}
+            )}
+          </Formik>
+        </div>
+      </div>
     </div>
   );
 };
