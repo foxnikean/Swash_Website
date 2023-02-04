@@ -4,7 +4,8 @@ import useAuthentication from "../utils/hooks/UseAuthHook";
 import { IoIosContact } from "react-icons/io";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import General from "./profileComponents/General"
+import ProfileGeneral from "./profileComponents/ProfileGeneral";
+
 const Profile = () => {
   const { user } = useAuthentication();
   const { id } = useParams();
@@ -31,7 +32,7 @@ const Profile = () => {
             </nav>
           </div>
           <div>
-            <General/>
+            <ProfileGeneral/>
           </div>
         </div>{" "}
       </div>{" "}

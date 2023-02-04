@@ -52,6 +52,7 @@ const Navbar = () => {
               <IoMdMenu className='text-4xl text-white' />
             </button>
           )}{" "}
+          {/* Mobile */}
           {showNav ? (
             <ul className='animate-bounceCustom gap-3 items-center justify-center  left-0 top-0 flex flex-col bg-black  z-20 fixed w-full h-screen lg:hidden'>
               {" "}
@@ -79,10 +80,12 @@ const Navbar = () => {
                 <Link> İletişim </Link>{" "}
               </li>{" "}
               <li className='text-white font-semibold mr-5 text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
-                <Link> Organizatörlere Özel </Link>{" "}
+                <Link to={user ? "/OrganisatorProfile" : "OrganisatorRegister"}> Organizatörlere Özel </Link>{" "}
               </li>
             </ul>
           ) : null}{" "}
+          {/* Desktop */}
+
           <ul className=' gap-3 items-center justify-center hidden lg:flex '>
             {" "}
             <li className='text-white font-semibold text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
@@ -95,7 +98,7 @@ const Navbar = () => {
               <Link> İletişim </Link>{" "}
             </li>{" "}
             <li className='text-white font-semibold text-xl mr-5 hover:border-mor border-transparent transition-all border-solid border-b-2 '>
-              <Link to='/AddEvent'> Organizatörlere Özel </Link>{" "}
+              <Link to={user ? `/OrganisatorProfile/${user.displayName}` : "OrganisatorRegister"} > Organizatörlere Özel </Link>{" "}
             </li>{" "}
             {user ? (
               <button
