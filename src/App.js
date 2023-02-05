@@ -11,6 +11,7 @@ import useAuthentication from "./utils/hooks/UseAuthHook";
 import OrganisatorRegister from "./components/OrganisatorRegister";
 import OrganisatorRegisterContinue from "./components/OrganisatorRegisterContinue";
 import OrganisatorProfile from "./components/OrganisatorProfile";
+import OrganisatorEvents from "./components/OrganisatorEvents";
 
 function App() {
   const { user } = useAuthentication();
@@ -23,6 +24,7 @@ function App() {
       <Route path='/AddEvent' element={<AddEventPage />} />{" "}
       <Route path='/OrganisatorRegisterContinue' element={< OrganisatorRegisterContinue/>} />
       <Route path='/OrganisatorProfile/:id' element={< OrganisatorProfile/>} />{" "}
+      <Route path='/OrganisatorEvents' element={< OrganisatorEvents/>} />{" "}
       <Route path='/Event/:id' element={<EventPage />} />{" "}
     </Routes>
   ) : (

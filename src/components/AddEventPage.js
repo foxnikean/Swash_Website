@@ -12,6 +12,7 @@ import useAuthentication from "../utils/hooks/UseAuthHook";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { v4 as uuidv4 } from "uuid";
+import OrganisatorEvents from "./OrganisatorEvents";
 
 const AddEventPage = () => {
   const [file, setFile] = useState();
@@ -83,10 +84,10 @@ const AddEventPage = () => {
               fb: "",
               youtube: "",
               image: url,
-            }}
+            }}  
             onSubmit={(values, { setSubmitting }) => {
               console.log(values);
-              setDoc(doc(db, `events`, values.eventName), {
+              setDoc(doc(db, `events`,"organisatorevents", auth.currentUser.uid, values.eventName), {
                 eventName: values.eventName,
                 organisatorName: values.organisatorName,
                 eventType: values.eventType,
