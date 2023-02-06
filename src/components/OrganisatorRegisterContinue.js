@@ -41,7 +41,7 @@ const OrganisatorRegisterContinue = () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           console.log(url);
           updateProfile(auth.currentUser, {
-            logoURL: url,
+            photoURL: url,
           })
             .then(() => {
               console.log("pp added");

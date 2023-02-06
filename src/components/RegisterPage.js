@@ -22,6 +22,16 @@ const LoginPage = () => {
             ) {
               errors.email = "Geçersiz e-posta adresi";
             }
+            if (!values.password) {
+              errors.password = "Gerekli";
+            } else if (
+              !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i.test(
+                values.password
+              )
+            ) {
+              errors.password =
+                "Şifre en az 8 karakter, en az bir büyük harf, en az bir küçük harf ve en az bir numara içermelidir.";
+            }
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
@@ -73,7 +83,7 @@ const LoginPage = () => {
                   component='div'
                 />
               </div>
-              <div className=' '>
+              <div className='flex flex-col items-center '>
                 <Field
                   className='bg-stone-900 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-gray-200 focus:border-mor transition-all'
                   type='password'
@@ -81,7 +91,7 @@ const LoginPage = () => {
                   placeholder='Şifre'
                 />
                 <ErrorMessage
-                  className='text-mor mt-3'
+                  className='text-mor mt-3 whitespace-normal'
                   name='password'
                   component='div'
                 />
@@ -96,9 +106,9 @@ const LoginPage = () => {
             </Form>
           )}
         </Formik>
-        <span className='text-white mt-7 text-lg'>
+        <span className='text-white mt-7 text-lg '>
           Zaten üye misiniz ?
-          <Link to='/Login' className='text-mor underline'>
+          <Link to='/Login' className='text-mor underline ml-2'>
             Giriş Yapın
           </Link>
         </span>

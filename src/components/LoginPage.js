@@ -22,14 +22,7 @@ const LoginPage = () => {
             ) {
               errors.email = "Geçersiz e-posta adresi";
             }
-            // if(!values.password){
-             
 
-            //   errors.password = "Gerekli"
-            //   !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i.test(values.password)
-            // ) {
-            //   errors.password = "Şifre en az 8 karakter, en az bir büyük harf, en az bir küçük harf ve en az bir numara içermelidir."
-            // }
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {

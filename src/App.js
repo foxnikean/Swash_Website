@@ -12,6 +12,7 @@ import OrganisatorRegister from "./components/OrganisatorRegister";
 import OrganisatorRegisterContinue from "./components/OrganisatorRegisterContinue";
 import OrganisatorProfile from "./components/OrganisatorProfile";
 import OrganisatorEvents from "./components/OrganisatorEvents";
+import EditEvent from "./components/EditEvent";
 
 function App() {
   const { user } = useAuthentication();
@@ -26,6 +27,7 @@ function App() {
       <Route path='/OrganisatorProfile/:id' element={< OrganisatorProfile/>} />{" "}
       <Route path='/OrganisatorEvents' element={< OrganisatorEvents/>} />{" "}
       <Route path='/Event/:id' element={<EventPage />} />{" "}
+      <Route path='/EditEvent/:id' element={<EditEvent />} />{" "}
     </Routes>
   ) : (
     <Routes>

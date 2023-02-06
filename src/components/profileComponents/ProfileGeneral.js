@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const ProfileGeneral = () => {
   return (
-    <div>ProfileGeneral</div>
-  )
-}
+    <div>
 
-export default ProfileGeneral
+    </div>
+  );
+};
+
+export default ProfileGeneral;

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
 import { IoIosAdd, IoIosCalendar, IoIosPin } from "react-icons/io";
 import partyex from "../assets/partyex.png";
 import { DatePicker, TimeInput } from "@mantine/dates";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { storage } from "../utils/firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -13,13 +13,16 @@ import { updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { v4 as uuidv4 } from "uuid";
 import OrganisatorNavbar from "./OrganisatorNavbar"
+import { useParams } from "react-router";
 
-const AddEventPage = () => {
+const EditEvent = () => {
   const [file, setFile] = useState();
   const [fileUrl, setFileUrl] = useState();
   const [percent, setPercent] = useState(0); // Handle file upload event and update state
-  const [url, setUrl] = useState(""); // Handle file upload event and update state
+  const [url, setUrl] = useState(); // Handle file upload event and update state
   const { user } = useAuthentication();
+  const [data, setData] = useState();
+  const { id } = useParams();
 
   function handleChange(event) {
     setFile(event.target.files[0]);
@@ -30,6 +33,7 @@ const AddEventPage = () => {
       alert("Please upload an image first!");
     }
 
+    
     const storageRef = ref(storage, `/events/${uuidv4()}`); // progress can be paused and resumed. It also exposes progress updates. // Receives the storage reference and the file to upload.
     const uploadTask = uploadBytesResumable(storageRef, file);
     uploadTask.on(
@@ -51,36 +55,48 @@ const AddEventPage = () => {
       }
     );
   };
+  const handleClick = async () => {
+    const querySnapshot = await getDoc(
+      doc(db, "events", "organisatorevents", auth.currentUser.uid, id)
+    );
+    const data = querySnapshot.data()
+    console.log(data)
+    setData(data)
+  };
+  useEffect(() => {
+    handleClick();
+  }, []);
 
   return (
+    data ? 
     <div className='bg-backgroundColor min-w-screen min-h-screen flex flex-col '>
       <OrganisatorNavbar/>
       <div className='container mx-auto mt-12'>
         <div className='flex items-start gap-32 pb-24'>
           <Formik
             initialValues={{
-              eventName: "",
-              organisatorName: "",
-              eventType: "fest",
-              eventCat: "music",
-              subEventCat: "alternative",
-              showVisitors: "public",
-              placeType: "standart",
-              placeName: "",
-              placeAddress: "",
-              eventDate: "",
-              eventDesc: "",
-              eventTime: "",
-              img1: "",
-              ticketName: "",
-              ticketDuration: "end",
-              ticketPrice: "",
-              maxTicketAmount: "",
-              insta: "",
-              twitter: "",
-              fb: "",
-              youtube: "",
-              image: url,
+              eventName: data.eventName,
+              organisatorName: data.organisatorName,
+              eventType: data.eventType,
+              eventCat: data.eventCat,
+              subEventCat: data.subEventCat,
+              showVisitors: data.showVisitors,
+              placeType: data.placeType,
+              placeName: data.placeName,
+              placeAddress: data.placeAddress,
+              eventDate: data.eventDate,
+              eventDesc: data.eventDesc,
+              eventRules: data.eventRules,
+              eventTime: data.eventTime,
+              ticketName: data.ticketName,
+              ticketDuration: data.ticketDuration,
+              ticketPrice: data.ticketPrice,
+              maxTicketAmount: data.maxTicketAmount,
+              insta: data.insta,
+              twitter: data.twitter,
+              fb: data.fb,
+              youtube: data.youtube,
+              image: data.image,
             }}  
             onSubmit={(values, { setSubmitting }) => {
               console.log(values);
@@ -479,8 +495,8 @@ const AddEventPage = () => {
           </Formik>
         </div>
       </div>
-    </div>
+    </div> : null
   );
 };
 
-export default AddEventPage;
+export default EditEvent;
