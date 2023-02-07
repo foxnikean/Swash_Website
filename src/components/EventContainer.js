@@ -41,6 +41,7 @@ const EventContainer = () => {
 
   const handleClick = async () => {
     const querySnapshot = await getDocs(collection(db, "events"));
+    // console.log(querySnapshot._firestore._authCredentials.auth.auth);
     console.log(querySnapshot);
     setevents(querySnapshot.docs.map((doc) => doc.data()));
   };

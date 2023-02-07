@@ -36,14 +36,14 @@ const Homepage = () => {
           <IoIosSearch className='absolute text-gray-400 text-5xl top-4  z-20 left-4' />
         </div>
         <select
-          name='cars'
+          name='cities'
           className=' pl-16 w-1/6 right-72 outline-none rounded-r-3xl absolute bg-white border-4 h-16 top-4 border-l-0 border-mor'
-          id='cars'
+          id='cities'
         >
-          <option value='volvo'>Volvo</option>
-          <option value='saab'>Saab</option>
-          <option value='mercedes'>Mercedes</option>
-          <option value='audi'>Audi</option>
+          <option value='istanbul'>İstanbul</option>
+          <option value='izmir'>İzmir</option>
+          <option value='ankara'>Ankara</option>
+          <option value='bursa'>Bursa</option>
         </select>
       </div>
       <EventContainer />

@@ -84,7 +84,8 @@ const AddEventPage = () => {
             }}  
             onSubmit={(values, { setSubmitting }) => {
               console.log(values);
-              setDoc(doc(db, `events`,"organisatorevents", auth.currentUser.uid, values.eventName), {
+              setDoc(doc(db, `events`, values.eventName), {
+                organisatorUID : auth.currentUser.uid,
                 eventName: values.eventName,
                 organisatorName: values.organisatorName,
                 eventType: values.eventType,
