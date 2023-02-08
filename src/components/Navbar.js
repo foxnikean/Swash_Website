@@ -74,10 +74,7 @@ const Navbar = () => {
                 <Link to='/'> Anasayfa </Link>{" "}
               </li>{" "}
               <li className='text-white font-semibold text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
-                <Link to='/AddEvent'> Etkinlikler </Link>{" "}
-              </li>{" "}
-              <li className='text-white font-semibold text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
-                <Link> İletişim </Link>{" "}
+                <Link to="/Contact"> İletişim </Link>{" "}
               </li>{" "}
               <li className='text-white font-semibold mr-5 text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
                 <Link to={user ? "/OrganisatorProfile" : "OrganisatorRegister"}> Organizatörlere Özel </Link>{" "}
@@ -92,10 +89,7 @@ const Navbar = () => {
               <Link to='/'> Anasayfa </Link>{" "}
             </li>{" "}
             <li className='text-white font-semibold text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
-              <Link to='/AddEvent'> Etkinlikler </Link>{" "}
-            </li>{" "}
-            <li className='text-white font-semibold text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
-              <Link> İletişim </Link>{" "}
+              <Link to="/Contact"> İletişim </Link>{" "}
             </li>{" "}
             <li className='text-white font-semibold text-xl mr-5 hover:border-mor border-transparent transition-all border-solid border-b-2 '>
               <Link to={user ? `/OrganisatorProfile/${user.displayName}` : "OrganisatorRegister"} > Organizatörlere Özel </Link>{" "}

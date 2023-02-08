@@ -19,7 +19,17 @@ const AddEventPage = () => {
   const [fileUrl, setFileUrl] = useState();
   const [percent, setPercent] = useState(0); // Handle file upload event and update state
   const [url, setUrl] = useState(""); // Handle file upload event and update state
+  const [ticketCount, setTicketCount] = useState(["0"]);
   const { user } = useAuthentication();
+
+  const handleTicketClick = (e) =>{
+    e.preventDefault()
+    if(ticketCount.length > 9) {
+      alert("Daha fazla bilet ekleyemezsiniz.")
+    } else{
+      setTicketCount([... ticketCount,  ticketCount.length])
+    }
+  }
 
   function handleChange(event) {
     setFile(event.target.files[0]);
@@ -99,10 +109,17 @@ const AddEventPage = () => {
                 eventDesc: values.eventDesc,
                 eventTime: values.eventTime,
                 eventRules: values.eventRules,
-                ticketName: values.ticketName,
-                ticketDuration: values.ticketDuration,
-                ticketPrice: values.ticketPrice,
-                maxTicketAmount: values.maxTicketAmount,
+                tickets: ticketCount.map((i) =>(
+                  {
+                    i: {
+                      name:values.ticketName,
+                      duration:values.ticketDuration,
+                      price:values.ticketPrice,
+                      max:values.maxTicketAmount,
+                    }
+                  }
+                  
+                )),
                 insta: values.insta,
                 twitter: values.twitter,
                 fb: values.fb,
@@ -318,63 +335,70 @@ const AddEventPage = () => {
                         <h2 className='text-2xl px-28 border-b-2 border-solid border-mor mb-8 text-center'>
                           Etkinlik Biletleri
                         </h2>
-                        <div className='flex w-full gap-0.5'>
-                          <div className='w-full gap-0.5 flex flex-col'>
-                            <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
-                              <h4 className='text-2xl'> Bilet Adı: </h4>
-                              <Field
-                                className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
-                                type='text'
-                                name='ticketName'
-                                placeholder=' Bilet uygun olan ismi yazınız.'
-                              />
-                            </div>
-                            <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
-                              <h4 className='text-2xl'>
-                                Biletin Satışta Kalma Süresi
-                              </h4>
-                              <Field
-                                className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
-                                as='select'
-                                name='ticketDuration'
-                              >
-                                <option value='end'>
-                                  Etkinlik Bitene Kadar
-                                </option>
-                                <option value='start'>
-                                  Etkinlik Başlayana Kadar
-                                </option>
-                                <option value='30'>
-                                  Başlamaya 30 dk Kalaya Kadar
-                                </option>
-                                <option value='24'>24 saat Kalaya Kadar</option>
-                              </Field>
-                            </div>
-                          </div>
-                          <div className='w-full gap-0.5 flex flex-col'>
-                            <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
-                              <h4 className='text-2xl'> Bilet Fiyatı: </h4>
-                              <Field
-                                className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
-                                type='number'
-                                name='ticketPrice'
-                                placeholder=' Etkinliğinize uygun olanı seçiniz.'
-                              />
-                            </div>
-                            <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
-                              <h4 className='text-2xl'>
-                                Alınabilir Maksimum Bilet Sayısı:
-                              </h4>
-                              <Field
-                                className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
-                                type='number'
-                                name='maxTicketAmount'
-                                placeholder=' Bu Bilet Türünden Alınabilir Maksimum Bilet Sayısı'
-                              />
-                            </div>
-                          </div>
+                        <div className="flex flex-col gap-5">
+
+                        {ticketCount.map((i)=>(
+                             <div className='flex w-full gap-0.5'>
+                             <div className='w-full gap-0.5 flex flex-col'>
+                               <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                                 <h4 className='text-2xl'> Bilet Adı: </h4>
+                                 <Field
+                                   className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
+                                   type='text'
+                                   name={"ticketName" + i}
+                                   placeholder=' Bilet uygun olan ismi yazınız.'
+                                 />
+                               </div>
+                               <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                                 <h4 className='text-2xl'>
+                                   Biletin Satışta Kalma Süresi
+                                 </h4>
+                                 <Field
+                                   className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
+                                   as='select'
+                                   name={"ticketDuration" + i}
+                                 >
+                                   <option value='end'>
+                                     Etkinlik Bitene Kadar
+                                   </option>
+                                   <option value='start'>
+                                     Etkinlik Başlayana Kadar
+                                   </option>
+                                   <option value='30'>
+                                     Başlamaya 30 dk Kalaya Kadar
+                                   </option>
+                                   <option value='24'>24 saat Kalaya Kadar</option>
+                                 </Field>
+                               </div>
+                             </div>
+                             <div className='w-full gap-0.5 flex flex-col'>
+                               <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                                 <h4 className='text-2xl'> Bilet Fiyatı: </h4>
+                                 <Field
+                                   className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
+                                   type='number'
+                                   name={"ticketPrice" + i}
+                                   placeholder=' Etkinliğinize uygun olanı seçiniz.'
+                                 />
+                               </div>
+                               <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                                 <h4 className='text-2xl'>
+                                   Alınabilir Maksimum Bilet Sayısı:
+                                 </h4>
+                                 <Field
+                                   className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
+                                   type='number'
+                                   name={"maxTicketAmount" + i}
+                                   placeholder=' Bu Bilet Türünden Alınabilir Maksimum Bilet Sayısı'
+                                 />
+                               </div>
+                             </div>
+                           </div>
+                          ))}
                         </div>
-                        <button className='flex items-center justify-center gap-2 mt-5 font-semibold text-xl'>
+
+                       
+                        <button className='flex items-center justify-center gap-2 mt-5 font-semibold text-xl' onClick={handleTicketClick} >
                           <IoIosAdd /> Bilet Ekle
                         </button>
                       </div>

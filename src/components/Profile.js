@@ -13,7 +13,7 @@ const Profile = () => {
     <div className='bg-backgroundColor min-w-screen min-h-screen'>
       <Navbar />
       <div className='container mx-auto px-56'>
-        <div className=' bg-mor flex gap-52'>
+        <div className=' bg-mor flex '>
           <div className='px-16 py-12 flex flex-col'>
             <div className=' flex flex-col items-start gap-5'>
               <img
@@ -27,7 +27,7 @@ const Profile = () => {
             </div>
             <nav className='flex flex-col items-start mt-6 font-semibold text-white gap-4'>
               <Link >Genel</Link>
-              <Link>Biletlerim</Link>
+              <Link >Biletlerim</Link>
               <Link>Şifre Değiştir</Link>
             </nav>
           </div>
