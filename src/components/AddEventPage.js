@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
-import { IoIosAdd, IoIosCalendar, IoIosPin } from "react-icons/io";
+import { IoIosAdd, IoIosCalendar, IoIosClose, IoIosPin } from "react-icons/io";
 import partyex from "../assets/partyex.png";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import { doc, setDoc } from "firebase/firestore";
@@ -12,7 +12,7 @@ import useAuthentication from "../utils/hooks/UseAuthHook";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { v4 as uuidv4 } from "uuid";
-import OrganisatorNavbar from "./OrganisatorNavbar"
+import OrganisatorNavbar from "./OrganisatorNavbar";
 
 const AddEventPage = () => {
   const [file, setFile] = useState();
@@ -22,18 +22,18 @@ const AddEventPage = () => {
   const [ticketCount, setTicketCount] = useState(["0"]);
   const { user } = useAuthentication();
 
-  const handleTicketClick = (e) =>{
-    e.preventDefault()
-    if(ticketCount.length > 9) {
-      alert("Daha fazla bilet ekleyemezsiniz.")
-    } else{
-      setTicketCount([... ticketCount,  ticketCount.length])
+  const handleTicketClick = (e) => {
+    e.preventDefault();
+    if (ticketCount.length > 9) {
+      alert("Daha fazla bilet ekleyemezsiniz.");
+    } else {
+      setTicketCount([...ticketCount, ticketCount.length]);
     }
-  }
+  };
 
   function handleChange(event) {
     setFile(event.target.files[0]);
-    setFileUrl(URL.createObjectURL(file))
+    setFileUrl(URL.createObjectURL(file));
   }
   const handleUpload = () => {
     if (!file) {
@@ -64,7 +64,7 @@ const AddEventPage = () => {
 
   return (
     <div className='bg-backgroundColor min-w-screen min-h-screen flex flex-col '>
-      <OrganisatorNavbar/>
+      <OrganisatorNavbar />
       <div className='container mx-auto mt-12'>
         <div className='flex items-start gap-32 pb-24'>
           <Formik
@@ -82,20 +82,19 @@ const AddEventPage = () => {
               eventDesc: "",
               eventTime: "",
               img1: "",
-              ticketName: "",
-              ticketDuration: "end",
-              ticketPrice: "",
-              maxTicketAmount: "",
               insta: "",
               twitter: "",
               fb: "",
               youtube: "",
               image: url,
-            }}  
+              tickets: [
+                { name: "Julia", duration: "28", price: "", amount: "" },
+              ],
+            }}
             onSubmit={(values, { setSubmitting }) => {
               console.log(values);
               setDoc(doc(db, `events`, values.eventName), {
-                organisatorUID : auth.currentUser.uid,
+                organisatorUID: auth.currentUser.uid,
                 eventName: values.eventName,
                 organisatorName: values.organisatorName,
                 eventType: values.eventType,
@@ -104,22 +103,12 @@ const AddEventPage = () => {
                 showVisitors: values.showVisitors,
                 placeType: values.placeType,
                 placeName: values.placeName,
-                placeAddress: values.placeAddress,
                 eventDate: values.eventDate,
                 eventDesc: values.eventDesc,
+                placeAddress: values.placeAddress,
                 eventTime: values.eventTime,
                 eventRules: values.eventRules,
-                tickets: ticketCount.map((i) =>(
-                  {
-                    i: {
-                      name:values.ticketName,
-                      duration:values.ticketDuration,
-                      price:values.ticketPrice,
-                      max:values.maxTicketAmount,
-                    }
-                  }
-                  
-                )),
+                tickets: values.tickets,
                 insta: values.insta,
                 twitter: values.twitter,
                 fb: values.fb,
@@ -335,72 +324,170 @@ const AddEventPage = () => {
                         <h2 className='text-2xl px-28 border-b-2 border-solid border-mor mb-8 text-center'>
                           Etkinlik Biletleri
                         </h2>
-                        <div className="flex flex-col gap-5">
-
-                        {ticketCount.map((i)=>(
-                             <div className='flex w-full gap-0.5'>
-                             <div className='w-full gap-0.5 flex flex-col'>
-                               <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
-                                 <h4 className='text-2xl'> Bilet Adı: </h4>
-                                 <Field
-                                   className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
-                                   type='text'
-                                   name={"ticketName" + i}
-                                   placeholder=' Bilet uygun olan ismi yazınız.'
-                                 />
-                               </div>
-                               <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
-                                 <h4 className='text-2xl'>
-                                   Biletin Satışta Kalma Süresi
-                                 </h4>
-                                 <Field
-                                   className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
-                                   as='select'
-                                   name={"ticketDuration" + i}
-                                 >
-                                   <option value='end'>
-                                     Etkinlik Bitene Kadar
-                                   </option>
-                                   <option value='start'>
-                                     Etkinlik Başlayana Kadar
-                                   </option>
-                                   <option value='30'>
-                                     Başlamaya 30 dk Kalaya Kadar
-                                   </option>
-                                   <option value='24'>24 saat Kalaya Kadar</option>
-                                 </Field>
-                               </div>
-                             </div>
-                             <div className='w-full gap-0.5 flex flex-col'>
-                               <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
-                                 <h4 className='text-2xl'> Bilet Fiyatı: </h4>
-                                 <Field
-                                   className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
-                                   type='number'
-                                   name={"ticketPrice" + i}
-                                   placeholder=' Etkinliğinize uygun olanı seçiniz.'
-                                 />
-                               </div>
-                               <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
-                                 <h4 className='text-2xl'>
-                                   Alınabilir Maksimum Bilet Sayısı:
-                                 </h4>
-                                 <Field
-                                   className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
-                                   type='number'
-                                   name={"maxTicketAmount" + i}
-                                   placeholder=' Bu Bilet Türünden Alınabilir Maksimum Bilet Sayısı'
-                                 />
-                               </div>
-                             </div>
-                           </div>
-                          ))}
+                        <div className='flex flex-col gap-5'>
+                          <FieldArray
+                            name='tickets'
+                            render={(arrayHelpers) => (
+                              <div className='flex flex-col gap-5 items-start'>
+                                {values.tickets.map((friend, index) => (
+                                  <div className="flex w-full flex-col items-start">
+                                  <div
+                                    className='flex w-full gap-0.5'
+                                    key={index}
+                                  >
+                                      
+                                    <div className='w-full gap-0.5 flex flex-col'>
+                                      <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                                        <h4 className='text-2xl'>
+                                          {" "}
+                                          Bilet Adı:{" "}
+                                        </h4>
+                                        <Field
+                                          className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
+                                          type='text'
+                                          name={`tickets[${index}].name`}
+                                          placeholder=' Bilet uygun olan ismi yazınız.'
+                                        />
+                                      </div>
+                                      <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                                        <h4 className='text-2xl'>
+                                          Biletin Satışta Kalma Süresi
+                                        </h4>
+                                        <Field
+                                          className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
+                                          as='select'
+                                          name={`tickets.${index}.duration`}
+                                        >
+                                          <option value='end'>
+                                            Etkinlik Bitene Kadar
+                                          </option>
+                                          <option value='start'>
+                                            Etkinlik Başlayana Kadar
+                                          </option>
+                                          <option value='30'>
+                                            Başlamaya 30 dk Kalaya Kadar
+                                          </option>
+                                          <option value='24'>
+                                            24 saat Kalaya Kadar
+                                          </option>
+                                        </Field>
+                                      </div>
+                                    </div>
+                                    <div className='w-full gap-0.5 flex flex-col'>
+                                      <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                                        <h4 className='text-2xl'>
+                                          {" "}
+                                          Bilet Fiyatı:{" "}
+                                        </h4>
+                                        <Field
+                                          className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
+                                          type='text'
+                                          name={`tickets[${index}].price`}
+                                          placeholder=' Bilet uygun olan ismi yazınız.'
+                                        />
+                                      </div>
+                                      <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                                        <h4 className='text-2xl'>
+                                          {" "}
+                                          Alınabilir Bilet Sayısı:{" "}
+                                        </h4>
+                                        <Field
+                                          className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
+                                          type='text'
+                                          name={`tickets[${index}].amount`}
+                                          placeholder=' Bilet uygun olan ismi yazınız.'
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                    <button
+                                      type='button'
+                                  className='flex items-center justify-center gap-2 mt-5 font-semibold text-xl'
+                                      onClick={() => arrayHelpers.remove(index)}
+                                      >
+                                      <IoIosClose/> Bileti Kaldır
+                                    </button>
+                                      </div>
+                                ))}
+                                <button
+                                  className='flex items-center justify-center gap-2 mt-5 font-semibold text-xl'
+                                  type='button'
+                                  onClick={() =>
+                                    arrayHelpers.push({
+                                      name: "",
+                                      duration: "",
+                                      price: "",
+                                      amount: "",
+                                    })
+                                  }
+                                >
+                                  <IoIosAdd /> Bilet Ekle
+                                </button>
+                              </div>
+                            )}
+                          />
+                          {/* {ticketCount.map((i) => (
+                            <div className='flex w-full gap-0.5'>
+                              <div className='w-full gap-0.5 flex flex-col'>
+                                <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                                  <h4 className='text-2xl'> Bilet Adı: </h4>
+                                  <Field
+                                    className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
+                                    type='text'
+                                    name={`ticketName${i}`}
+                                    placeholder=' Bilet uygun olan ismi yazınız.'
+                                  />
+                                </div>
+                                <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                                  <h4 className='text-2xl'>
+                                    Biletin Satışta Kalma Süresi
+                                  </h4>
+                                  <Field
+                                    className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
+                                    as='select'
+                                    name={`ticketDuration${i}`}
+                                  >
+                                    <option value='end'>
+                                      Etkinlik Bitene Kadar
+                                    </option>
+                                    <option value='start'>
+                                      Etkinlik Başlayana Kadar
+                                    </option>
+                                    <option value='30'>
+                                      Başlamaya 30 dk Kalaya Kadar
+                                    </option>
+                                    <option value='24'>
+                                      24 saat Kalaya Kadar
+                                    </option>
+                                  </Field>
+                                </div>
+                              </div>
+                              <div className='w-full gap-0.5 flex flex-col'>
+                                <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                                  <h4 className='text-2xl'> Bilet Fiyatı: </h4>
+                                  <Field
+                                    className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
+                                    type='number'
+                                    name={`ticketPrice${i}`}
+                                    placeholder=' Etkinliğinize uygun olanı seçiniz.'
+                                  />
+                                </div>
+                                <div className=' bg-mor bg-opacity-50 h-28 flex justify-center flex-col w-full px-4'>
+                                  <h4 className='text-2xl'>
+                                    Alınabilir Maksimum Bilet Sayısı:
+                                  </h4>
+                                  <Field
+                                    className='bg-transparent border-b-2 border-gray-300 border-solid p-2 w-full outline-none text-gray-200 focus:border-mor transition-all'
+                                    type='number'
+                                    name={`maxTicketAmount${i}`}
+                                    placeholder=' Bu Bilet Türünden Alınabilir Maksimum Bilet Sayısı'
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          ))} */}
                         </div>
-
-                       
-                        <button className='flex items-center justify-center gap-2 mt-5 font-semibold text-xl' onClick={handleTicketClick} >
-                          <IoIosAdd /> Bilet Ekle
-                        </button>
                       </div>
                       <div className='  bg-white pb-3 w-1/5 rounded-3xl flex  flex-col gap-2 mx-4 select-none'>
                         {file ? (
@@ -408,7 +495,6 @@ const AddEventPage = () => {
                             className=' mb-1 rounded-t-3xl h-44  pointer-events-none '
                             alt=''
                             src={URL.createObjectURL(file)}
-
                           />
                         ) : (
                           <img
