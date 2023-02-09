@@ -56,8 +56,9 @@ const EditEvent = () => {
     );
   };
   const handleClick = async () => {
+    console.log(id.replace(/%/g, ''))
     const querySnapshot = await getDoc(
-      doc(db, "events", "organisatorevents", auth.currentUser.uid, id)
+      doc(db, "events", id.replace(/%/g, ''))
     );
     const data = querySnapshot.data()
     console.log(data)

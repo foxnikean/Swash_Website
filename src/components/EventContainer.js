@@ -78,13 +78,13 @@ const EventContainer = () => {
               src={event.image}
               alt=''
             />
-            <span className='self-center font-medium text-xl '>
+            <span className='self-center font-medium text-xl text-center'>
               {event.eventName}
             </span>
-            <div className="flex flex-col border-t-[1px] pt-3">
-              <div className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
+            <div className="flex flex-col border-t-[1px] pt-3 w-full">
+              <span className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start '>
                 <IoIosPin /> {event.placeName}
-              </div>
+              </span>
               <div className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
                 <IoIosCalendar /> {event.eventDate} {event.eventTime}
               </div>
