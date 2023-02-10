@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <div className=' pb-4 mb-10  bg-mor z-10 w-full bg-opacity-30 '>
-      <div className=' flex items-center w-full justify-center  pt-8 lg:justify-center container mx-auto px-48'>
+      <div className=' flex items-center w-full justify-center  pt-6 lg:justify-center container mx-auto px-48'>
         <img
           className='lg:w-24 md:w-16 w-12 mr-3'
           onClick={() => handleLogout()}
@@ -70,13 +70,13 @@ const Navbar = () => {
                   </button>
                 )}
               </li>{" "}
-              <li className='text-white font-semibold text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
+              <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
                 <Link to='/'> Anasayfa </Link>{" "}
               </li>{" "}
-              <li className='text-white font-semibold text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
+              <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
                 <Link to="/Contact"> İletişim </Link>{" "}
               </li>{" "}
-              <li className='text-white font-semibold mr-5 text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
+              <li className='text-white font-light mr-5 text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
                 <Link to={user ? "/OrganisatorProfile" : "OrganisatorRegister"}> Organizatörlere Özel </Link>{" "}
               </li>
             </ul>
@@ -85,13 +85,13 @@ const Navbar = () => {
 
           <ul className=' gap-3 items-center justify-center hidden lg:flex '>
             {" "}
-            <li className='text-white font-semibold text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
+            <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
               <Link to='/'> Anasayfa </Link>{" "}
             </li>{" "}
-            <li className='text-white font-semibold text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
+            <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
               <Link to="/Contact"> İletişim </Link>{" "}
             </li>{" "}
-            <li className='text-white font-semibold text-xl mr-5 hover:border-mor border-transparent transition-all border-solid border-b-2 '>
+            <li className='text-white font-light text-xl mr-5 hover:border-mor border-transparent transition-all border-solid border-b-2 '>
               <Link to={user ? `/OrganisatorProfile/${user.displayName}` : "OrganisatorRegister"} > Organizatörlere Özel </Link>{" "}
             </li>{" "}
             {user ? (

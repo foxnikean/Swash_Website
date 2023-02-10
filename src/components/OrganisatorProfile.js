@@ -125,8 +125,8 @@ const OrganisatorProfile = () => {
             <div className='w-full flex gap-x-12 gap-y-4 items-center justify-between flex-wrap'>
               <Formik
                 initialValues={{
-                  address: user.email,
-                  cell: "",
+                  address: user.address,
+                  ph: "",
                   orgName: user.displayName,
                 }}
                 validate={(values) => {
@@ -157,41 +157,35 @@ const OrganisatorProfile = () => {
                     <div>
                       <Field
                         className='bg-gray-100 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-black focus:border-mor transition-all'
-                        as="textarea"
-                        name='websiteURL'
-                        placeholder='Firma websitesi'
+                        type='text'
+                        name='address'
+                        placeholder='Organizatör Firma Adresi'
                       />
                     </div>
                     <div>
                       <Field
                         className='bg-gray-100 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-black focus:border-mor transition-all'
-                        type='tel'
-                        name='city'
+                        as="select"
+                        name='ph'
                         placeholder='Organizatör Firma Şehir'
+                      >
+                        <option value="İstanbul">İstanbul</option>
+                      </Field>
+                    </div>
+                    <div>
+                      <Field
+                        className='bg-gray-100 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-black focus:border-mor transition-all'
+                        type='url'
+                        name='instagram'
+                        placeholder='Organizatör Firma İnstagram'
                       />
                     </div>
                     <div>
                       <Field
                         className='bg-gray-100 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-black focus:border-mor transition-all'
-                        type='tel'
-                        name='city'
-                        placeholder='Organizatör Firma Şehir'
-                      />
-                    </div>
-                    <div>
-                      <Field
-                        className='bg-gray-100 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-black focus:border-mor transition-all'
-                        type='tel'
-                        name='city'
-                        placeholder='Organizatör Firma Şehir'
-                      />
-                    </div>
-                    <div>
-                      <Field
-                        className='bg-gray-100 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-black focus:border-mor transition-all'
-                        type='tel'
-                        name='city'
-                        placeholder='Organizatör Firma Şehir'
+                        type='url'
+                        name='website'
+                        placeholder='Organizatör Firma Web Sayfası'
                       />
                     </div>
                     <button
@@ -240,25 +234,25 @@ const OrganisatorProfile = () => {
                     <div>
                       <Field
                         className='bg-gray-100 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-black focus:border-mor transition-all'
-                        type='address'
-                        name='address'
-                        placeholder='Organizatör Firma Adresi'
+                        type='text'
+                        name='bankName'
+                        placeholder='Banka Adı'
                       />
                     </div>
                     <div>
                       <Field
                         className='bg-gray-100 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-black focus:border-mor transition-all'
-                        type='url'
-                        name='websiteURL'
-                        placeholder='Firma websitesi'
+                        type='text'
+                        name='accountOwner'
+                        placeholder='Hesap Sahibi'
                       />
                     </div>
                     <div>
                       <Field
                         className='bg-gray-100 border-b-2 border-gray-300 border-solid p-2 w-64 md:w-80 lg:w-96 outline-none text-black focus:border-mor transition-all'
-                        type='tel'
-                        name='city'
-                        placeholder='Organizatör Firma Şehir'
+                        type='text'
+                        name='iban'
+                        placeholder='IBAN'
                       />
                     </div>
                     <div>

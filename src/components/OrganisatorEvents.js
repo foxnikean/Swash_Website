@@ -16,7 +16,7 @@ const OrganisatorEvents = () => {
   const [events, setEvents] = useState([]);
   const handleClick = () => {
     const eventRef = collection(db,"events")
-    const q = query(eventRef,where("organisatorUID", "==", "7Ui0VnBuGEZzXAnwyHjasm9Y0Pq1"))
+    const q = query(eventRef,where("organisatorUID", "==", auth.currentUser.uid))
     onSnapshot(q, (snapshot) =>{
       let gates = []
       snapshot.docs.forEach((doc) =>{

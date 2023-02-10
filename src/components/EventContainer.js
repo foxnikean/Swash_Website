@@ -82,16 +82,23 @@ const EventContainer = () => {
               {event.eventName}
             </span>
             <div className="flex flex-col border-t-[1px] pt-3 w-full">
+              <div className="flex items-center  ">
+
               <span className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start '>
-                <IoIosPin /> {event.placeName}
+                <IoIosPin /> 
               </span>
+              <span className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start truncate'>
+              {event.placeName}
+                
+              </span>
+              </div>
               <div className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
                 <IoIosCalendar /> {event.eventDate} {event.eventTime}
               </div>
             </div>
             <div className='flex items-center w-full  justify-center px-2'>
               <button className=' bg-lightPurple  border-solid border-2 rounded-xl border-transparent  shadow-md shadow-mor  transition-all py-2 text-white w-full'>
-                <span className='font-semibold'> {event.ticketPrice} ₺</span>
+                <span className='font-semibold'> {event.tickets[0].price} ₺</span>
                 <span> 'den Başlayan Fiyatlarla </span>
               </button>
             </div>

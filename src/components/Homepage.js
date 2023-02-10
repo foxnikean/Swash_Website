@@ -79,8 +79,7 @@ const Homepage = () => {
                 <div className='flex items-center w-full  justify-center px-2'>
                   <button className=' bg-lightPurple hover:bg-purple-700 border-solid border-2 rounded-xl border-transparent  shadow-md shadow-mor  transition-all py-2 text-white w-full'>
                     <span className='font-semibold'>
-                      {" "}
-                      {event.ticketPrice} ₺
+                      {event.tickets[0].price} ₺
                     </span>
                     <span> 'den Başlayan Fiyatlarla </span>
                   </button>

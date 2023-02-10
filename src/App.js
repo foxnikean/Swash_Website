@@ -14,6 +14,8 @@ import OrganisatorProfile from "./components/OrganisatorProfile";
 import OrganisatorEvents from "./components/OrganisatorEvents";
 import EditEvent from "./components/EditEvent";
 import Contact from "./components/Contact";
+import { ProfileRoute } from "./components/ProfileRoute";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const { user } = useAuthentication();
@@ -24,9 +26,12 @@ function App() {
       <Route path='/:id/Profile' element={<Profile />} />{" "}
       <Route path='/AddProfilePic' element={<AddProfilePic />} />{" "}
       <Route path='/AddEvent' element={<AddEventPage />} />{" "}
-      <Route path='/OrganisatorRegisterContinue' element={< OrganisatorRegisterContinue/>} />
-      <Route path='/OrganisatorProfile/:id' element={< OrganisatorProfile/>} />{" "}
-      <Route path='/OrganisatorEvents' element={< OrganisatorEvents/>} />{" "}
+      <Route
+        path='/OrganisatorRegisterContinue'
+        element={<OrganisatorRegisterContinue />}
+      />
+      <Route path='/OrganisatorProfile/:id' element={<OrganisatorProfile />} />{" "}
+      <Route path='/OrganisatorEvents' element={<OrganisatorEvents />} />{" "}
       <Route path='/Event/:id' element={<EventPage />} />{" "}
       <Route path='/EditEvent/:id' element={<EditEvent />} />{" "}
       <Route path='/Contact' element={<Contact />} />{" "}
