@@ -25,13 +25,14 @@ const Navbar = () => {
   return (
     <div className=' pb-4 mb-10  bg-mor z-10 w-full bg-opacity-30 '>
       <div className=' flex items-center w-full justify-center  pt-6 lg:justify-center container mx-auto px-48'>
-        <img
+        {/* <img
           className='lg:w-24 md:w-16 w-12 mr-3'
           onClick={() => handleLogout()}
           src={logo}
           alt='swash'
-        />
-        <nav className='flex items-end justify-end flex-row flex-1'>
+        /> */}
+        <nav className='flex items-end w-full justify-between flex-row flex-1'>
+       
           {" "}
           {showNav ? (
             <button
@@ -58,7 +59,7 @@ const Navbar = () => {
               {" "}
               <li>
                 {user ? (
-                  <button className='text-white mr-3 text-lg flex items-center justify-center gap-2'>
+                  <button className='text-white mr-3 text-lg flex items-center justify-center gap-4'>
                     <img src={user.photoURL} className="w-16 h-16 rounded-full border-2 border-solid border-white " alt='name' /> {user.displayName}{" "}
                   </button>
                 ) : (
@@ -82,8 +83,15 @@ const Navbar = () => {
             </ul>
           ) : null}{" "}
           {/* Desktop */}
+          <ul className=' gap-3 items-center justify-between w-full hidden lg:flex '>
+          <img
+          className='lg:w-24 md:w-16 w-12 mr-3'
+          onClick={() => handleLogout()}
+          src={logo}
+          alt='swash'
+        />
+            <div className="flex gap-8">
 
-          <ul className=' gap-3 items-center justify-center hidden lg:flex '>
             {" "}
             <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
               <Link to='/'> Anasayfa </Link>{" "}
@@ -91,15 +99,17 @@ const Navbar = () => {
             <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
               <Link to="/Contact"> İletişim </Link>{" "}
             </li>{" "}
-            <li className='text-white font-light text-xl mr-5 hover:border-mor border-transparent transition-all border-solid border-b-2 '>
+            <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 mr-5'>
               <Link to={user ? `/OrganisatorProfile/${user.displayName}` : "OrganisatorRegister"} > Organizatörlere Özel </Link>{" "}
             </li>{" "}
+            </div>
+
             {user ? (
               <button
                 onClick={() => navigate("/" + user.displayName + "/Profile")}
-                className='text-white mr-3 text-lg flex items-center justify-center gap-2'
+                className='text-white mr-3 text-lg flex items-center justify-center gap-3'
               >
-                <img src={user.photoURL} className="w-16 h-16 rounded-full border-2 border-solid border-white "  alt='' />{" "}
+                <img src={user.photoURL} className="w-14 h-14 rounded-full border-2 border-solid border-white "  alt='' />{" "}
                 {user.displayName}{" "}
               </button>
             ) : (

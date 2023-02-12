@@ -30,7 +30,7 @@ const Homepage = () => {
         <div className='flex items-center justify-center relative w-5/6'>
           <input
             type='text'
-            className='w-full rounded-tl-3xl rounded-br-3xl outline-none z-10 bg-white border-4 h-20 border-mor pl-20 text-2xl'
+            className='w-full rounded-tl-3xl rounded-br-3xl outline-none z-10 bg-white border-4 h-20 border-mor pl-20 capitalize text-2xl'
             placeholder='Etkinlik Ara'
           />
           <IoIosSearch className='absolute text-gray-400 text-5xl top-4  z-20 left-4' />
@@ -58,27 +58,33 @@ const Homepage = () => {
                 onClick={() => {
                   navigate(`/Event/${event.eventName}`, { state: { event } });
                 }}
-                className='  bg-white pb-3 w-1/5  my-5 rounded-3xl flex  flex-col gap-2 mx-4 select-none'
+                className=' w-72 bg-white pb-3 rounded-3xl flex  flex-col gap-2 mx-4 select-none'
               >
                 <img
                   className=' mb-1 rounded-t-3xl h-44  pointer-events-none '
                   src={event.image}
                   alt=''
                 />
-                <span className='self-center font-medium text-xl '>
+                <span className='self-center font-medium text-xl text-center'>
                   {event.eventName}
                 </span>
-                <div className='flex flex-col border-t-[1px] pt-3'>
-                  <div className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
-                    <IoIosPin /> {event.placeName}
+                <div className='flex flex-col border-t-[1px] pt-3 w-full'>
+                  <div className='flex items-center  '>
+                    <span className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start '>
+                      <IoIosPin />
+                    </span>
+                    <span className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start truncate'>
+                      {event.placeName}
+                    </span>
                   </div>
                   <div className='text-black font-light text-lg flex gap-1 md:gap-3 ml-2 items-center justify-start'>
                     <IoIosCalendar /> {event.eventDate} {event.eventTime}
                   </div>
                 </div>
                 <div className='flex items-center w-full  justify-center px-2'>
-                  <button className=' bg-lightPurple hover:bg-purple-700 border-solid border-2 rounded-xl border-transparent  shadow-md shadow-mor  transition-all py-2 text-white w-full'>
+                  <button className=' bg-lightPurple  border-solid border-2 rounded-xl border-transparent  shadow-md shadow-mor  transition-all py-2 text-white w-full'>
                     <span className='font-semibold'>
+                      {" "}
                       {event.tickets[0].price} ₺
                     </span>
                     <span> 'den Başlayan Fiyatlarla </span>

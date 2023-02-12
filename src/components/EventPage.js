@@ -93,7 +93,7 @@ const EventPage = () => {
                 deserunt dolorum sapiente exercitationem, rerum est consectetur
                 nulla Temporibus earum cumque omnis tempore illum.
               </span>
-              <button className='text-mor border-[0.5px] rounded py-2 border-mor w-52'>
+              <button className='text-white border-[0.5px] rounded py-2 border-white w-52'>
                 Devamını Oku
               </button>
             </div>
@@ -125,7 +125,7 @@ const EventPage = () => {
                 deserunt dolorum sapiente exercitationem, rerum est consectetur
                 nulla Temporibus earum cumque omnis tempore illum.
               </span>
-              <button className='text-mor border-[0.5px] rounded py-2 border-mor w-52'>
+              <button className='text-white border-[0.5px] rounded py-2 border-white w-52'>
                 Devamını Oku
               </button>
             </div>

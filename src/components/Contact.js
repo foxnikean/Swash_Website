@@ -2,13 +2,14 @@ import React from "react";
 import Navbar from "./Navbar";
 import { IoIosMail } from "react-icons/io";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import Map from "./Map";
 const Contact = () => {
   return (
     <div className='bg-backgroundColor  min-h-screen'>
       <Navbar />
       <div className='text-white container mx-auto px-48 w-full'>
         <h3 className='text-white text-3xl font-semibold'>İletişim</h3>
-        <div className='mt-36 flex items-center justify-between w-full'>
+        <div className='mt-20 flex items-center justify-between w-full'>
           <div className='flex flex-col gap-10'>
             <span className='font-bold text-2xl'>Adres</span>
             <span className='capitalize'>
@@ -18,7 +19,9 @@ const Contact = () => {
             <span className='text-2xl flex gap-5 items-center'>
               <IoIosMail className='text-2xl' /> destek@swashticket.com
             </span>
-            <span className="text-6xl font-bold">Harita gelecek</span>
+            <div >
+              <Map/>
+            </div>
           </div>
           <div className="w-2/4">
             <Formik
