@@ -16,6 +16,8 @@ import EditEvent from "./components/EditEvent";
 import Contact from "./components/Contact";
 import { ProfileRoute } from "./components/ProfileRoute";
 import { BrowserRouter } from "react-router-dom";
+// Leaflet
+import '../node_modules/leaflet-geosearch/dist/geosearch.css';
 
 function App() {
   const { user } = useAuthentication();

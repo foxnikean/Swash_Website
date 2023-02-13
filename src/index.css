@@ -7,6 +7,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     -webkit-appearance: none;
 }
 
+:root {
+    --leaflet-tile-filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+}
+
+.leaflet-tile {
+    filter: var(--leaflet-tile-filter, none);
+}
+
+.leaflet-container {
+    background: #303030;
+}
+
 input[type="time"]::-webkit-inner-spin-button,
 input[type="time"]::-webkit-calendar-picker-indicator {
     display: none;
@@ -15,4 +27,16 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 .react-multi-carousel-list {
     position: unset !important;
+}
+
+@layer base {
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+#map {
+    height: 180px;
 }

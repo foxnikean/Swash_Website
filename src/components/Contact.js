@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { IoIosMail } from "react-icons/io";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Map from "./Map";
+// Leaflet
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
+
 const Contact = () => {
+
   return (
     <div className='bg-backgroundColor  min-h-screen'>
       <Navbar />
@@ -20,7 +24,8 @@ const Contact = () => {
               <IoIosMail className='text-2xl' /> destek@swashticket.com
             </span>
             <div >
-              <Map/>
+
+              <Map address="METROPOL ISTANBUL C1 BLOK "/>
             </div>
           </div>
           <div className="w-2/4">

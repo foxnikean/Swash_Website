@@ -10,9 +10,7 @@ import {
 } from "react-icons/io";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
-import axios from "axios";
 import Map from "./Map";
-import { Marker } from "mapbox-gl";
 const EventPage = () => {
   const { id } = useParams();
   const params = useLocation();
@@ -101,9 +99,8 @@ const EventPage = () => {
               <span className='font-bold text-xl mb-5'>Mekan:</span>
               <span>{event.placeName}</span>
               <span>{event.placeAddress}</span>
-              <div className="relative">
-                <IoIosPin className="absolute left-1/2 bottom-1/2 text-3xl z-20"/>
-              <Map/>
+              <div className="relative mt-8">
+             <Map address={event.placeName}/>
               </div>
 
             </div>

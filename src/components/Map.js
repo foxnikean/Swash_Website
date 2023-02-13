@@ -1,27 +1,43 @@
 import React, { useEffect, useRef, useState } from "react";
-import mapboxgl from "mapbox-gl";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+// Leaflet
+import { OpenStreetMapProvider } from "leaflet-geosearch";
 
-const Map = () => {
-  mapboxgl.accessToken =
-    "pk.eyJ1Ijoic3dhc2h0aWNrZXQiLCJhIjoiY2xkeG5vNGlhMGlmZTQybnZwOHB1MTYyNCJ9.lioI3WWVgFtdPRCGmSZFpg";
-  const mapContainer = useRef(null);
-  const map = useRef(null);
-  const [lng, setLng] = useState(28.975069);
-  const [lat, setLat] = useState(41.031253);
-  const [zoom, setZoom] = useState(10);
+const Map = ({ address }) => {
+  const [coord, setCoord] = useState([]);
+  // Leaflet
+  const provider = new OpenStreetMapProvider();
+  const handleAddress = async () => {
+    const results = await provider.search({
+      query: address,
+    });
+    console.log(results);
+    setCoord([results[0].bounds[0][0], results[0].bounds[0][1]]);
+  };
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: "mapbox://styles/mapbox/dark-v11",
-      center: [lng, lat],
-      zoom: zoom,
-    });
-  });
+    handleAddress();
+  }, []);
   return (
     <div>
-      <div ref={mapContainer} className='h-96' />
+      {coord.length === 0 ? null : (
+        <MapContainer
+          style={{ height: "200px", width: "100wh" }}
+          center={coord.length === 0 ? [40, 40] : coord}
+          zoom={13}
+          scrollWheelZoom={false}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+          />
+          <Marker position={coord.length === 0 ? [40, 40] : coord}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        </MapContainer>
+      )}
     </div>
   );
 };
