@@ -3,9 +3,6 @@ import {
   StackedCarousel,
   ResponsiveContainer,
 } from "react-stacked-center-carousel";
-import car1 from "../assets/car1.webp";
-import car2 from "../assets/car2.webp";
-import car3 from "../assets/car3.webp";
 
 export const data = [
   {

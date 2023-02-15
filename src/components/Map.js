@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 // Leaflet
 import { OpenStreetMapProvider } from "leaflet-geosearch";
+import {Icon} from 'leaflet';
+import marker from "../assets/pin.png"
+
 
 const Map = ({ address }) => {
   const [coord, setCoord] = useState([]);
@@ -14,6 +17,12 @@ const Map = ({ address }) => {
     console.log(results);
     setCoord([results[0].bounds[0][0], results[0].bounds[0][1]]);
   };
+
+  //Pin
+  const myIcon = new Icon({
+    iconUrl: marker,
+    iconSize: [32,32]
+   })
 
   useEffect(() => {
     handleAddress();
@@ -31,10 +40,7 @@ const Map = ({ address }) => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
           />
-          <Marker position={coord.length === 0 ? [40, 40] : coord}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
+          <Marker icon={new Icon({iconUrl: marker, iconSize: [25, 41], iconAnchor: [12, 41]})} position={coord.length === 0 ? [40, 40] : coord}>
           </Marker>
         </MapContainer>
       )}
