@@ -12,10 +12,19 @@ const Map = ({ address }) => {
   const provider = new OpenStreetMapProvider();
   const handleAddress = async () => {
     const results = await provider.search({
-      query: address,
+      query: address ,
     });
+    let bound = []
+    results.map((result, i) =>{
+      if(result.label.includes("Turkey")){
+        bound = [result.bounds[0][0], result.bounds[0][1]]
+        console.log(bound)
+      }else {
+        console.log("lol")
+      }
+  })
     console.log(results);
-    setCoord([results[0].bounds[0][0], results[0].bounds[0][1]]);
+    setCoord(bound);
   };
 
   //Pin

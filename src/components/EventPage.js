@@ -39,7 +39,6 @@ const EventPage = () => {
     });
     setCounts(nextCounters);
     setTotal([...total, event.tickets[index].price]);
-
   }
 
   function handleDecrementClick(index) {
@@ -54,7 +53,6 @@ const EventPage = () => {
     });
     setCounts(nextCounters);
     setTotal([...total, event.tickets[index].price]);
-
   }
 
   return (
@@ -139,8 +137,13 @@ const EventPage = () => {
           </div>
           <div>
             <div>
-              <span>Ara Toplam</span> <span>{total.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
-}</span>
+              <span>Ara Toplam</span>{" "}
+              <span>
+                {total.reduce(
+                  (accumulator, currentValue) => accumulator + currentValue,
+                  0
+                )}
+              </span>
             </div>
           </div>
         </div>
