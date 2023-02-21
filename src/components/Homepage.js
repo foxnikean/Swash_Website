@@ -16,9 +16,9 @@ const Homepage = () => {
   const [searchQuerry, setSearchQuerry] = useState("");
   const navigate = useNavigate();
   const handleSearch = async (e) => {
-    const search = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1).toLowerCase()
+    const search = e.target.value.toLowerCase()
    setSearchQuerry(search)
-    const filter = events.filter(event => event.eventName.includes(search)) 
+    const filter = events.filter(event => event.eventName.toLowerCase().includes(search)) 
     setData(filter);
   };
 
