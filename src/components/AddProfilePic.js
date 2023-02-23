@@ -80,7 +80,7 @@ const AddProfilePic = () => {
           className='opacity-0 w-0 h-0'
           accept='/image/*'
         />
-        <span className='font-semibold text-xl'>Profil Resmi Ekle</span>
+        <span className='font-semibold text-xl'>Profil Resmi Ekle {auth.currentUser.uid}</span>
         <span className='text-gray-500'>Zorunlu Değil*</span>
       </div>
       {file ? (

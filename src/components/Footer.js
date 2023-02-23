@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../assets/logo.png";
 import { IoLogoInstagram, IoLogoTwitter, IoLogoLinkedin } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -9,14 +10,21 @@ const Footer = () => {
         <img src={logo} className='w-32 mb-6 lg:mb-0' alt='' />
         <div className='flex gap-4 text-sm'>
           <div className='flex flex-col '>
-            <a href=''> Hakkımızda </a> <a href=''> Çerez Politikası </a>
-            <a href=''> Şartlar ve Koşullar </a>
-            <a href=''> Kişisel Verilerin İşlenmesi Aydınlatma Metni </a>
+            <Link>Hakkımızda </Link>
+            <Link to={`/Agreement/cookie`}> Çerez Politikası </Link>
+            <Link to={`/Agreement/kullanım`}>Kullanım Koşulları </Link>
+            <a
+              href='https://firebasestorage.googleapis.com/v0/b/swashv3.appspot.com/o/KVKK.pdf?alt=media&token=e61efbd9-5a8d-40b9-ac32-f982b6f3666e'
+              target='_blank'
+            >
+              Kişisel Verilerin İşlenmesi Aydınlatma Metni
+            </a>
           </div>
           <div className='flex flex-col '>
-            <a href=''> Gizlilik </a> <a href=''> Açık Rıza Metni </a>
-            <a href=''> İletişim </a>
-            <a href=''> Kişisel Verilerin Korunması Politikası </a>
+            <Link to={`/Agreement/user`}> Kullanıcı Sözleşmesi</Link>
+             <Link> Açık Rıza Metni</Link>
+            <Link to='/Contact'>İletişim </Link>
+            <Link> Kişisel Verilerin Korunması Politikası</Link>
           </div>
         </div>
       </div>
@@ -27,13 +35,13 @@ const Footer = () => {
         <div className='flex gap-3 text-gray-400 items-center justify-center'>
           <span> Follow Us </span> <span> | </span>
           <div className='gap-1 flex '>
-            <a href=''>
+            <a href='https://www.instagram.com/swash.club/' target='_blank'>
               <IoLogoInstagram />
             </a>
-            <a href=''>
+            <a href='' target='_blank'>
               <IoLogoTwitter />
             </a>
-            <a href=''>
+            <a href='' target='_blank'>
               <IoLogoLinkedin />
             </a>
           </div>
