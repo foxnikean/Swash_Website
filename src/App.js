@@ -22,6 +22,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "./utils/firebase";
 import { useEffect, useState } from "react";
 import Agreement from "./components/Agreement";
+import NotFound from "./components/NotFound";
 
 function App() {
   const { user } = useAuthentication();
@@ -71,9 +72,11 @@ function App() {
       ) : null}
       <Route path='/Event/:id' element={<EventPage />} />{" "}
       <Route path='/Contact' element={<Contact />} />{" "}
+      <Route path='*' element={<NotFound />} />
     </Routes>
   ) : (
     <Routes>
+        <Route path='*' element={<NotFound />} />
       <Route path='/' element={<Homepage />} />{" "}
       <Route path='/Agreement/:id' element={<Agreement />} />{" "}
       <Route path='/Register' element={<RegisterPage />} />{" "}

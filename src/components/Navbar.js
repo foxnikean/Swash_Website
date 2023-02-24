@@ -1,16 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { IoIosClose, IoIosContact, IoMdMenu } from "react-icons/io";
 import useAuthentication from "../utils/hooks/UseAuthHook";
 import { signOut } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth, db } from "../utils/firebase";
 import { useNavigate } from "react-router";
+import { doc, getDoc } from "firebase/firestore";
 const Navbar = () => {
   const [showNav, setshowNav] = useState(false);
+  const [userData, setUserData] = useState([]);
   const { user } = useAuthentication();
   const navigate = useNavigate();
-
+  const handleClick = async () => {
+    const querySnapshot = await getDoc(doc(db, "users", auth.currentUser.uid));
+    const data = querySnapshot;
+    if (data.exists()) {
+      console.log("Document data:", data.data());
+      setUserData(data.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  };
+  useEffect(() => {
+    handleClick();
+  }, []);
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -32,7 +47,6 @@ const Navbar = () => {
           alt='swash'
         /> */}
         <nav className='flex items-end w-full justify-between flex-row flex-1'>
-       
           {" "}
           {showNav ? (
             <button
@@ -60,7 +74,12 @@ const Navbar = () => {
               <li>
                 {user ? (
                   <button className='text-white mr-3 text-lg flex items-center justify-center gap-4'>
-                    <img src={user.photoURL} className="w-16 h-16 rounded-full border-2 border-solid border-white " alt='name' /> {user.displayName}{" "}
+                    <img
+                      src={user.photoURL}
+                      className='w-16 h-16 rounded-full border-2 border-solid border-white '
+                      alt='name'
+                    />{" "}
+                    {user.displayName}{" "}
                   </button>
                 ) : (
                   <button
@@ -75,41 +94,57 @@ const Navbar = () => {
                 <Link to='/'> Anasayfa </Link>{" "}
               </li>{" "}
               <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
-                <Link to="/Contact"> İletişim </Link>{" "}
+                <Link to='/Contact'> İletişim </Link>{" "}
               </li>{" "}
               <li className='text-white font-light mr-5 text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
-                <Link to={user ? "/OrganisatorProfile" : "OrganisatorRegister"}> Organizatörlere Özel </Link>{" "}
+                <Link to={user ? "/OrganisatorProfile" : "OrganisatorRegister"}>
+                  {" "}
+                  Organizatörlere Özel{" "}
+                </Link>{" "}
               </li>
             </ul>
           ) : null}{" "}
           {/* Desktop */}
           <ul className=' gap-3 items-center justify-between w-full hidden lg:flex '>
-          <img
-          className='lg:w-24 md:w-16 w-12 mr-3'
-          onClick={() => handleLogout()}
-          src={logo}
-          alt='swash'
-        />
-            <div className="flex gap-8">
-
-            {" "}
-            <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
-              <Link to='/'> Anasayfa </Link>{" "}
-            </li>{" "}
-            <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
-              <Link to="/Contact"> İletişim </Link>{" "}
-            </li>{" "}
-            <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 mr-5'>
-              <Link to={user ? `/OrganisatorProfile/${user.displayName}` : "OrganisatorRegister"} > Organizatörlere Özel </Link>{" "}
-            </li>{" "}
+            <img
+              className='lg:w-24 md:w-16 w-12 mr-3'
+              onClick={() => handleLogout()}
+              src={logo}
+              alt='swash'
+            />
+            <div className='flex gap-8'>
+              {" "}
+              <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
+                <Link to='/'> Anasayfa </Link>{" "}
+              </li>{" "}
+              <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 '>
+                <Link to='/Contact'> İletişim </Link>{" "}
+              </li>{" "}
+              {userData.role === "organisation" || user === undefined ? (
+                <li className='text-white font-light text-xl hover:border-mor border-transparent transition-all border-solid border-b-2 mr-5'>
+                  <Link
+                    to={
+                      user
+                        ? `/OrganisatorProfile/${user.displayName}`
+                        : "OrganisatorRegister"
+                    }
+                  >
+                    {" "}
+                    Organizatörlere Özel{" "}
+                  </Link>{" "}
+                </li>
+              ) : null}
             </div>
-
             {user ? (
               <button
                 onClick={() => navigate("/" + user.displayName + "/Profile")}
                 className='text-white mr-3 text-lg flex items-center justify-center gap-3'
               >
-                <img src={user.photoURL} className="w-14 h-14 rounded-full border-2 border-solid border-white "  alt='' />{" "}
+                <img
+                  src={user.photoURL}
+                  className='w-14 h-14 rounded-full border-2 border-solid border-white '
+                  alt=''
+                />{" "}
                 {user.displayName}{" "}
               </button>
             ) : (

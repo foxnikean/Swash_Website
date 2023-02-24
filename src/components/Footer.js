@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../assets/logo.png";
 import { IoLogoInstagram, IoLogoTwitter, IoLogoLinkedin } from "react-icons/io";
 import { Link } from "react-router-dom";
-
+import iyzico from "../assets/logo_band_white@3x.png"
 const Footer = () => {
   return (
     <div className='bg-black flex flex-col mt-48 pb-16 pt-8 px-8 border-t-2 '>
@@ -24,7 +24,7 @@ const Footer = () => {
             <Link to={`/Agreement/user`}> Kullanıcı Sözleşmesi</Link>
              <Link> Açık Rıza Metni</Link>
             <Link to='/Contact'>İletişim </Link>
-            <Link> Kişisel Verilerin Korunması Politikası</Link>
+            <Link to={`/Agreement/privacy`}> Gizlilik</Link>
           </div>
         </div>
       </div>
@@ -32,6 +32,7 @@ const Footer = () => {
         <span className='text-gray-400'>
           Copyright Swash Bilet Basım ve Dağıtım A.Ş
         </span>
+        <img className="w-96" src={iyzico} alt="" />
         <div className='flex gap-3 text-gray-400 items-center justify-center'>
           <span> Follow Us </span> <span> | </span>
           <div className='gap-1 flex '>
