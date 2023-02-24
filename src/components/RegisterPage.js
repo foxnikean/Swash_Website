@@ -12,7 +12,12 @@ const LoginPage = () => {
       <div className='container flex-col flex  items-center justify-center min-h-screen min-w-full'>
         <h3 className='text-white font-bold text-5xl'> Kaydolun </h3>
         <Formik
-          initialValues={{ email: "", password: "", username: "",aggreements:"" }}
+          initialValues={{
+            email: "",
+            password: "",
+            username: "",
+            aggreements: "",
+          }}
           validate={(values) => {
             const errors = {};
             if (!values.email) {
@@ -32,8 +37,9 @@ const LoginPage = () => {
               errors.password =
                 "Şifre en az 8 karakter, en az bir büyük harf, en az bir küçük harf ve en az bir numara içermelidir.";
             }
-            if(!values.aggreements){
-              errors.aggreements = "Lütfen kayıt olmadan önce anlaşmaları kabul ediniz."
+            if (!values.aggreements) {
+              errors.aggreements =
+                "Lütfen kayıt olmadan önce anlaşmaları kabul ediniz.";
             }
             return errors;
           }}
@@ -100,20 +106,29 @@ const LoginPage = () => {
                 />
               </div>
               <div className='flex flex-col items-center '>
-                <div className="flex items-center justify-center gap-3">
+                <div className='flex items-center justify-center gap-3'>
                   <Field
                     className='bg-stone-900 border-b-2 border-gray-300 border-solid p-2 outline-none text-gray-200 focus:border-mor transition-all'
                     type='checkbox'
                     name='aggreements'
                     placeholder='Şifre'
                   />
-                  <span className="text-white"><Link className="underline" to={`/Agreement/kullanım`}>Ön Bilgilendirme Koşullarını </Link> ve <Link className="underline" to={`/Agreement/user`}>Mesafeli Satış Sözleşmesini</Link> Okudum.</span>
-                    </div>
-                  <ErrorMessage
-                    className='text-mor mt-3 whitespace-normal'
-                    name='aggreements'
-                    component='div'
-                  />
+                  <span className='text-white'>
+                    <Link className='underline' to={`/Agreement/kullanım`}>
+                      Ön Bilgilendirme Koşullarını{" "}
+                    </Link>{" "}
+                    ve{" "}
+                    <Link className='underline' to={`/Agreement/user`}>
+                      Mesafeli Satış Sözleşmesini
+                    </Link>{" "}
+                    Okudum.
+                  </span>
+                </div>
+                <ErrorMessage
+                  className='text-mor mt-3 whitespace-normal'
+                  name='aggreements'
+                  component='div'
+                />
               </div>
               <button
                 className='bg-mor text-white w-36 md:w-72 ml-auto mr-auto py-4 hover:bg-mor transition-all'

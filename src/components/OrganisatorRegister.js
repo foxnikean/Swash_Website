@@ -23,6 +23,9 @@ const OrganisatorRegister = () => {
             ) {
               errors.email = "Geçersiz e-posta adresi";
             }
+            if(!values.aggreements){
+              errors.aggreements = "Lütfen kayıt olmadan önce anlaşmaları kabul ediniz."
+            }
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
@@ -92,6 +95,31 @@ const OrganisatorRegister = () => {
                 <ErrorMessage
                   className='text-mor mt-3'
                   name='password'
+                  component='div'
+                />
+              </div>
+              <div className='flex flex-col items-center '>
+                <div className='flex items-center justify-center gap-3'>
+                  <Field
+                    className='bg-stone-900 border-b-2 border-gray-300 border-solid p-2 outline-none text-gray-200 focus:border-mor transition-all'
+                    type='checkbox'
+                    name='aggreements'
+                    placeholder='Şifre'
+                  />
+                  <span className='text-white'>
+                    <Link className='underline' to={`/Agreement/kullanım`}>
+                      Ön Bilgilendirme Koşullarını{" "}
+                    </Link>{" "}
+                    ve{" "}
+                    <Link className='underline' to={`/Agreement/user`}>
+                      Mesafeli Satış Sözleşmesini
+                    </Link>{" "}
+                    Okudum.
+                  </span>
+                </div>
+                <ErrorMessage
+                  className='text-mor mt-3 whitespace-normal'
+                  name='aggreements'
                   component='div'
                 />
               </div>
