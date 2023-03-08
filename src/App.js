@@ -23,6 +23,7 @@ import { auth, db } from "./utils/firebase";
 import { useEffect, useState } from "react";
 import Agreement from "./components/Agreement";
 import NotFound from "./components/NotFound";
+import Cart from "./components/Cart";
 
 function App() {
   const { user } = useAuthentication();
@@ -49,6 +50,7 @@ function App() {
       <Route path='/:id/Profile' element={<Profile />} />{" "}
       <Route path='/AddProfilePic' element={<AddProfilePic />} />{" "}
       <Route path='/Agreement/:id' element={<Agreement />} />{" "}
+      <Route path="/Checkout" element={<Cart/>}/>
       {userData.role === "organisation" ? (
         <Route path='/AddEvent' element={<AddEventPage />} />
       ) : null}

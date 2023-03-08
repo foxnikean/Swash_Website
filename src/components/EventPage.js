@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import { useLocation, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import {
   IoIosAdd,
   IoIosCalendar,
@@ -15,19 +15,12 @@ const EventPage = () => {
   const { id } = useParams();
   const params = useLocation();
   const event = params.state.event;
-  const [counts, setCounts] = useState([]);
-  const [total, setTotal] = useState([]);
-  const [sum, setSum] = useState();
+  const [counts, setCounts] = useState([1,1,1]);
+  const [sum, setSum] = useState(0);
+  const navigate = useNavigate()
   let date = format(new Date(event.eventDate), "do PPPP", { locale: tr });
   date = date.split(".").pop();
-  console.log(date);
-  useEffect(() => {
-    let eventsArray = [];
-    event.tickets.map((ticket, i) => eventsArray.push(0));
-    setCounts(eventsArray);
-  }, []);
-
-  function handleIncrementClick(index) {
+  const handleIncrementNum = (index) => {
     const nextCounters = counts.map((c, i) => {
       if (i === index) {
         // Increment the clicked counter
@@ -38,21 +31,30 @@ const EventPage = () => {
       }
     });
     setCounts(nextCounters);
-    setTotal([...total, event.tickets[index].price]);
+   
   }
 
-  function handleDecrementClick(index) {
+  const handleIncrementSum = (e) => {
+ const add = parseInt(e.target.id)
+    setSum(sum + add)
+  }
+
+
+  const handleDecreaseNum = (index) => {
     const nextCounters = counts.map((c, i) => {
-      if (i === index) {
-        // Increment the clicked counter
+      if (i === index && c != 0) {
         return c - 1;
       } else {
-        // The rest haven't changed
         return c;
       }
     });
     setCounts(nextCounters);
-    setTotal([...total, event.tickets[index].price]);
+   
+  }
+
+  const handleDecreaseSum = (e) => {
+ const neg = parseInt(e.target.id)
+    setSum(sum - neg)
   }
 
   return (
@@ -106,7 +108,7 @@ const EventPage = () => {
           </span>
           <div className='flex flex-col gap-5 mt-5 w-full'>
             {event.tickets.map((ticket, i) => (
-              <div className='flex w-full justify-between px-5 items-center border-b-[0.5px] text-white border-white  pb-2'>
+              <div key={i} className='flex w-full justify-between px-5 items-center border-b-[0.5px] text-white border-white  pb-2'>
                 <div className='flex flex-col text-sm'>
                   <span>{ticket.name}</span>
                   <span className='font-bold'>{ticket.price} ₺</span>
@@ -114,38 +116,44 @@ const EventPage = () => {
                 <div className='flex items-center gap-3'>
                   <button
                     className='text-3xl font-bold text-white'
-                    onClick={() => {
-                      handleDecrementClick(i);
+                    onClick={(e) => {
+                      handleDecreaseNum(i);
+                      handleDecreaseSum(e);
                     }}
                   >
-                    <IoIosRemove />
+                    <IoIosRemove id={ticket.price}/>
                   </button>
                   <span className='bg-slate-600 text-white py-1 border-2 rounded-md border-white select-none w-12 text-center'>
                     {counts[i]}
                   </span>
                   <button
                     className='text-3xl font-bold text-white'
-                    onClick={() => {
-                      handleIncrementClick(i);
+                    onClick={(e) => {
+                      handleIncrementNum(i);
+                      handleIncrementSum(e);
                     }}
+
                   >
-                    <IoIosAdd />
+                    <IoIosAdd id={ticket.price}/>
                   </button>
                 </div>
               </div>
             ))}
           </div>
-          <div>
-            <div>
-              <span>Ara Toplam</span>{" "}
-              <span>
-                {total.reduce(
-                  (accumulator, currentValue) => accumulator + currentValue,
-                  0
-                )}
+            <div className="flex w-full justify-between my-8">
+              <span className="font-semibold text-xl">Ara Toplam :</span>{" "}
+              <span className="text-lg font-bold">
+                {sum} ₺
               </span>
             </div>
-          </div>
+          <button
+            onClick={() => {
+              navigate(`/Checkout`, { state: { event,sum } });
+            }}
+            className='bg-backgroundColor text-white w-full rounded-full py-3'
+          >
+            Bilet Al
+          </button>
         </div>
       </div>
     </div>
@@ -153,3 +161,4 @@ const EventPage = () => {
 };
 
 export default EventPage;
+
