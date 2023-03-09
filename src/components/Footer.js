@@ -10,7 +10,7 @@ const Footer = () => {
         <img src={logo} className='w-32 mb-6 lg:mb-0' alt='' />
         <div className='flex gap-4 text-sm'>
           <div className='flex flex-col '>
-            <Link>Hakkımızda </Link>
+            <Link to={`/Agreement/us`}>Hakkımızda </Link>
             <Link to={`/Agreement/cookie`}> Çerez Politikası </Link>
             <Link to={`/Agreement/kullanım`}>Kullanım Koşulları </Link>
             <a
